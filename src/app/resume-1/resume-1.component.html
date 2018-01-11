@@ -198,7 +198,7 @@
     </section>
     <section id="education-section" class="education-section section">
         <h2 class="section-title">Education</h2>
-        <div *ngIf="profile != null" class="row">
+        <div *ngIf="profile != null && !isEdit" class="row">
             <div *ngFor="let education of profile.education" class="item col-12 col-md-4">
                 <div class="item-inner">
                     <h3 class="degree">{{ education.qualification }}</h3>
@@ -208,6 +208,33 @@
                     </div>
                     <div class="desc"> {{ education.description }} </div>
                 </div>
+            </div>
+        </div>
+        <div *ngIf="profile != null && isEdit" class="row">
+            <div class="form-group col-6">
+                <label>Institution Name</label>
+                <input [(ngModel)]="newEducation.institutionName" type="text" class="form-control" placeholder="Enter institution name here"
+                />
+            </div>
+            <div class="form-group col-6">
+                <label>Qualification</label>
+                <input [(ngModel)]="newWorkExperience.qualification" type="text" class="form-control" placeholder="Enter qualification here" />
+            </div>
+            <div class="form-group col-6">
+                <label>Start Date</label>
+                <input [(ngModel)]="newWorkExperience.from" type="date" class="form-control" placeholder="Enter start date here"
+                />
+            </div>
+            <div class="form-group col-6">
+                <label>End Date</label>
+                <input [(ngModel)]="newWorkExperience.to" type="date" class="form-control" placeholder="Enter end date here" />
+            </div>
+            <div class="form-group col-12">
+                <label>Description</label>
+                <textarea [(ngModel)]="newWorkExperience.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+            </div>
+            <div class="form-group col-12">
+                <button (click)="onClick_AddWorkExperience()" class="btn btn-success pull-right">Save</button>
             </div>
         </div>
     </section>

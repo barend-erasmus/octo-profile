@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Profile } from '../models/profile';
 import { WorkExperience } from '../models/work-experience';
+import { Education } from '../models/education';
 
 @Component({
   selector: 'app-resume-1',
@@ -30,6 +31,8 @@ export class Resume1Component implements OnInit {
   );
 
   public newWorkExperience: WorkExperience = new WorkExperience(null, null, new Date(), null, null, new Date());
+
+  public newEducation: Education = new Education(null, new Date(), null, null, new Date());
 
   constructor(
     private profileService: ProfileService,
