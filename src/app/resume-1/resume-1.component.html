@@ -1,0 +1,255 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link id="theme-style" rel="stylesheet" href="/assets/resume-1/css/styles.css">
+<header class="header">
+    <div class="top-bar container-fluid">
+        <div *ngIf="!isEdit" class="actions">
+            <a class="btn d-none d-md-inline-block" href="mailto: {{ profile == null? '' : profile.emailAddress }}">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i> Hire Me
+            </a>
+        </div>
+        <ul *ngIf="!isEdit" class="social list-inline">
+            <li *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)" class="list-inline-item">
+                <a href="{{ profile.linkedInLink }}">
+                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)" class="list-inline-item">
+                <a href="{{ profile.twitterLink }}">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li *ngIf="profile == null? false : (profile.googlePlusLink == null? false : profile.googlePlusLink)" class="list-inline-item">
+                <a href="{{ profile.googlePlusLink }}">
+                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="intro">
+        <div class="container text-center">
+            <img class="profile-image" src="{{ profile == null? '' : profile.image }}" alt="">
+
+            <h1 *ngIf="!isEdit" class="name">{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</h1>
+
+            <div *ngIf="isEdit" class="row">
+                <div class="col-6">
+                    <input [(ngModel)]="profile.firstName" type="text" class="form-control" />
+                </div>
+                <div class="col-6">
+                    <input [(ngModel)]="profile.lastName" type="text" class="form-control" />
+                </div>
+            </div>
+
+            <div *ngIf="!isEdit" class="title">{{ profile == null? '' : profile.workExperiences[0].position }}</div>
+
+            <div *ngIf="!isEdit" class="profile">
+                <p>{{ profile.about }}</p>
+            </div>
+
+            <div *ngIf="isEdit" class="row">
+                <div class="col-12">
+                    <textarea [(ngModel)]="profile.about" type="text" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-info">
+        <div class="container text-center">
+            <ul class="list-inline">
+                <li *ngIf="!isEdit" class="email list-inline-item">
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto: {{ profile == null? '' : profile.emailAddress }}">{{ profile == null? '' : profile.emailAddress }}</a>
+                </li>
+                <li *ngIf="isEdit" class="email list-inline-item">
+                    <input [(ngModel)]="profile.emailAddress" type="text" class="form-control" />
+                </li>
+                <li *ngIf="!isEdit" class="list-inline-item">
+                    <i class="fa fa-phone"></i>
+                    <a href="tel: {{ profile.contactNumber }}">{{ profile == null? '' : profile.contactNumber }}</a>
+                </li>
+                <li *ngIf="isEdit" class="list-inline-item">
+                    <input [(ngModel)]="profile.contactNumber" type="text" class="form-control" />
+                </li>
+                <li *ngIf="!isEdit" class="website list-inline-item">
+                    <i class="fa fa-globe"></i>
+                    <a href="{{ profile == null? '' : profile.website }}" target="_blank">{{ profile == null? '' : profile.website }}</a>
+                </li>
+                <li *ngIf="isEdit" class="website list-inline-item">
+                    <input [(ngModel)]="profile.website" type="text" class="form-control" />
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="page-nav-space-holder d-none d-md-block">
+        <div id="page-nav-wrapper" class="page-nav-wrapper text-center">
+            <div class="container">
+                <ul id="page-nav" class="nav page-nav list-inline">
+                    <li class="nav-item">
+                        <a class="scrollto nav-link" href="#experiences-section">Experiences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="scrollto nav-link" href="#education-section">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="scrollto nav-link" href="#skills-section">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="scrollto nav-link" href="#portfolio-section">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="scrollto nav-link" href="#contact-section">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="wrapper container">
+    <section id="experiences-section" class="experiences-section section">
+        <h2 class="section-title">Work Experiences</h2>
+        <div *ngIf="profile != null" class="timeline">
+            <div *ngFor="let workExperience of profile.workExperiences" class="item">
+                <div class="work-place">
+                    <h3 class="place">{{ workExperience.companyName }}</h3>
+                    <div class="location">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> {{ workExperience.location }}
+                    </div>
+                </div>
+                <div class="job-meta">
+                    <div class="title">{{ workExperience.position }}</div>
+                    <div class="time">{{ workExperience.from | date: 'MMMM yyyy' }} - {{ workExperience.to == null? 'Present' : workExperience.to
+                        | date: 'MMMM yyyy' }}</div>
+                </div>
+                <div class="job-desc">
+                    <p>
+                        {{ workExperience.description }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="education-section" class="education-section section">
+        <h2 class="section-title">Education</h2>
+        <div *ngIf="profile != null" class="row">
+            <div *ngFor="let education of profile.education" class="item col-12 col-md-4">
+                <div class="item-inner">
+                    <h3 class="degree">{{ education.qualification }}</h3>
+                    <div class="education-body"> {{ education.institutionName }} </div>
+                    <div class="time">{{ education.from | date: 'yyyy' }} - {{ education.to == null? 'Present' : education.to | date: 'yyyy'
+                        }}
+                    </div>
+                    <div class="desc"> {{ education.description }} </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills-section" class="skills-section section text-center">
+        <h2 class="section-title">Professional Skills</h2>
+        <div class="top-skills">
+            <h3 class="subtitle">Top Skills</h3>
+            <div *ngIf="profile != null" class="row">
+                <div *ngFor="let skill of profile.skills" class="item col-12 col-md-4">
+                    <div class="item-inner">
+                        <h4 class="skill-name">{{ skill.name }}</h4>
+                        <div class="level">{{ skill.level }}, {{ skill.years }} years</div>
+                        <div class="desc"> {{ skill.description }} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="other-skills">
+            <h3 class="subtitle">Other Skills</h3>
+            <div class="misc-skills">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">SASS</span>
+                <span class="skill-tag">LESS</span>
+                <span class="skill-tag">Git</span>
+                <br>
+                <span class="skill-tag">Ruby</span>
+                <span class="skill-tag">PHP</span>
+                <span class="skill-tag">Wireframe</span>
+                <span class="skill-tag">Spanish</span>
+                <span class="skill-tag">French</span>
+            </div>
+        </div> -->
+    </section>
+    <section id="portfolio-section" class="portfolio-section section">
+        <h2 class="section-title">Portfolio</h2>
+        <div *ngIf="profile != null" class="items-wrapper isotope row">
+            <div *ngFor="let item of profile.portfolio" class="item col-lg-3 col-6">
+                <div class="item-inner">
+                    <figure class="figure">
+                        <img class="img-fluid" src="{{ item.image }}" alt="" />
+                    </figure>
+                    <div class="content text-left">
+                        <h3 class="sub-title">
+                            <a href="{{ item.link == null? '#' : item.link }}">{{ item.name }}</a>
+                        </h3>
+                        <div class="meta">{{ item.description }}</div>
+                        <div *ngIf="item.link != null" class="action">
+                            <a href="{{ item.link }}">View</a>
+                        </div>
+                    </div>
+                    <a class="link-mask" href="#"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact-section" class="contact-section section">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="intro">
+            <img class="profile-image" src="http://via.placeholder.com/300x300" alt="">
+            <div class="dialog">
+                <p>I'm currently taking on freelance work. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                    commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+                    Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+                    Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+                <p>
+                    <strong>I can help with the following:</strong>
+                </p>
+                <ul class="list-unstyled service-list">
+                    <li>
+                        <i class="fa fa-check" aria-hidden="true"></i> App development with ReactJS</li>
+                    <li>
+                        <i class="fa fa-check" aria-hidden="true"></i> Front-end development with AngularJS</li>
+                    <li>
+                        <i class="fa fa-check" aria-hidden="true"></i> Back-end development with Django/Python</li>
+                    <li>
+                        <i class="fa fa-check" aria-hidden="true"></i> UI development</li>
+                    <li>
+                        <i class="fa fa-check" aria-hidden="true"></i> UX prototyping</li>
+                </ul>
+                <p>Drop me a line at
+                    <a href="mailto: {{ profile == null? '' : profile.emailAddress }}">{{ profile == null? '' : profile.emailAddress }}</a> or call me at
+                    <a href="tel: {{ profile == null? '' : profile.contactNumber }}">{{ profile == null? '' : profile.contactNumber }}</a>
+                </p>
+                <ul class="social list-inline">
+                    <li *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)" class="list-inline-item">
+                        <a href="{{ profile.linkedInLink }}">
+                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)" class="list-inline-item">
+                        <a href="{{ profile.twitterLink }}">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li *ngIf="profile == null? false : (profile.googlePlusLink == null? false : profile.googlePlusLink)" class="list-inline-item">
+                        <a href="{{ profile.googlePlusLink }}">
+                            <i class="fa fa-google-plus" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+<footer class="footer text-center">
+    <div class="container">
+        <small class="copyright"> Copyright @
+            <a href="https://developersworkspace.co.za" target="_blank">Octo Profile</a>
+        </small>
+    </div>
+</footer>
