@@ -319,7 +319,7 @@ export class ProfileService {
           new Date(2017, 1, 1),
         ),
       ],
-    ))
+    ));
   }
 
 }

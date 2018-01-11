@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Profile } from '../models/profile';
+import { WorkExperience } from '../models/work-experience';
 
 @Component({
   selector: 'app-resume-1',
@@ -9,18 +10,41 @@ import { Profile } from '../models/profile';
 })
 export class Resume1Component implements OnInit {
 
-  public isEdit: boolean = false;
+  public isEdit: boolean = true;
 
-  public profile: Profile = null;
+  public profile: Profile = new Profile(
+    null,
+    null,
+    [],
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    [],
+    [],
+    null,
+    null,
+    [],
+  );
+
+  public newWorkExperience: WorkExperience = new WorkExperience(null, null, new Date(), null, null, new Date());
 
   constructor(
     private profileService: ProfileService,
   ) { }
 
   public ngOnInit(): void {
-    this.profileService.get().subscribe((profile) => {
-      this.profile = profile;
-    })
+    // this.profileService.get().subscribe((profile) => {
+    //   this.profile = profile;
+    // });
+  }
+
+  public onClick_AddWorkExperience(): void {
+    this.profile.workExperiences.push(this.newWorkExperience);
+
+    this.newWorkExperience = new WorkExperience(null, null, new Date(), null, null, new Date());
   }
 
 }
