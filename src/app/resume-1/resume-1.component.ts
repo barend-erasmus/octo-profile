@@ -16,6 +16,14 @@ export class Resume1Component implements OnInit {
 
   public isEdit: boolean = true;
 
+  public newEducation: Education = new Education(null, new Date(), null, null, new Date());
+
+  public newPortfolioItem: PortfolioItem = new PortfolioItem(null, null, null, null);
+
+  public newSkill: Skill = new Skill(null, null, null, null);
+
+  public newWorkExperience: WorkExperience = new WorkExperience(null, null, new Date(), null, null, new Date());
+
   public profile: Profile = new Profile(
     null,
     null,
@@ -33,67 +41,17 @@ export class Resume1Component implements OnInit {
     [],
   );
 
-  public newWorkExperience: WorkExperience = new WorkExperience(null, null, new Date(), null, null, new Date());
-
-  public newEducation: Education = new Education(null, new Date(), null, null, new Date());
-
-  public newSkill: Skill = new Skill(null, null, null, null);
-
-  public newPortfolioItem: PortfolioItem = new PortfolioItem(null, null, null, null);
   public tempPortfolioItem: PortfolioItem = null;
 
   constructor(
-    private profileService: ProfileService,
     private element: ElementRef,
+    private profileService: ProfileService,
   ) { }
 
   public ngOnInit(): void {
     // this.profileService.get().subscribe((profile) => {
     //   this.profile = profile;
     // });
-  }
-
-  public onClick_AddWorkExperience(): void {
-    this.profile.workExperiences.push(this.newWorkExperience);
-
-    this.newWorkExperience = new WorkExperience(null, null, new Date(), null, null, new Date());
-  }
-
-  public onClick_AddEducation(): void {
-    this.profile.education.push(this.newEducation);
-
-    this.newEducation = new Education(null, new Date(), null, null, new Date());
-  }
-
-  public onClick_AddSkill(): void {
-    this.profile.skills.push(this.newSkill);
-
-    this.newSkill = new Skill(null, null, null, null);
-  }
-
-  public onClick_AddPortfolioItem(): void {
-    this.profile.portfolio.push(this.newPortfolioItem);
-
-    this.newPortfolioItem = new PortfolioItem(null, null, null, null);
-  }
-
-  public onClick_Save(): void {
-    this.isEdit = false;
-
-    console.log(this.profile);
-  }
-
-  public onClick_Edit(): void {
-    this.isEdit = true;
-  }
-
-  public onClick_Image(): void {
-    this.element.nativeElement.querySelector('input#onChange_Image').click();
-  }
-
-  public onClick_PortfolioItemImage(portfolioItem: PortfolioItem): void {
-    this.tempPortfolioItem = portfolioItem;
-    this.element.nativeElement.querySelector('input#onChange_PortfolioItemImage').click();
   }
 
   public onChange_Image(event): void {
@@ -115,7 +73,6 @@ export class Resume1Component implements OnInit {
     }
   }
 
-
   public onChange_PortfolioItemImage(event): void {
     const fileList: FileList = event.target.files;
 
@@ -135,4 +92,46 @@ export class Resume1Component implements OnInit {
     }
   }
 
+  public onClick_AddEducation(): void {
+    this.profile.education.push(this.newEducation);
+
+    this.newEducation = new Education(null, new Date(), null, null, new Date());
+  }
+
+  public onClick_AddPortfolioItem(): void {
+    this.profile.portfolio.push(this.newPortfolioItem);
+
+    this.newPortfolioItem = new PortfolioItem(null, null, null, null);
+  }
+
+  public onClick_AddSkill(): void {
+    this.profile.skills.push(this.newSkill);
+
+    this.newSkill = new Skill(null, null, null, null);
+  }
+
+  public onClick_AddWorkExperience(): void {
+    this.profile.workExperiences.push(this.newWorkExperience);
+
+    this.newWorkExperience = new WorkExperience(null, null, new Date(), null, null, new Date());
+  }
+
+  public onClick_Edit(): void {
+    this.isEdit = true;
+  }
+
+  public onClick_Image(): void {
+    this.element.nativeElement.querySelector('input#onChange_Image').click();
+  }
+
+  public onClick_PortfolioItemImage(portfolioItem: PortfolioItem): void {
+    this.tempPortfolioItem = portfolioItem;
+    this.element.nativeElement.querySelector('input#onChange_PortfolioItemImage').click();
+  }
+
+  public onClick_Save(): void {
+    this.isEdit = false;
+
+    console.log(this.profile);
+  }
 }
