@@ -34,6 +34,7 @@ export class Resume1Component implements OnInit {
     null,
     null,
     null,
+    null,
     [],
     [],
     null,

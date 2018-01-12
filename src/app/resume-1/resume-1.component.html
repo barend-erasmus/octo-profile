@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
 
 <input id="onChange_Image" (change)="onChange_Image($event)" type="file" style="visibility: hidden;" />
-<input id="onChange_PortfolioItemImage" (change)="onChange_PortfolioItemImage($event)" type="file" style="visibility: hidden;" />
+<input id="onChange_PortfolioItemImage" (change)="onChange_PortfolioItemImage($event)" type="file" style="visibility: hidden;"
+/>
 
 <header class="header">
     <div class="top-bar container-fluid">
@@ -41,15 +42,12 @@
         <div class="container text-center">
             <img class="profile-image" src="{{ profile == null? 'http://via.placeholder.com/350x350' : (profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml) }}"
                 alt="">
-
             <div *ngIf="isEdit" class="row">
                 <div class="form-group col-12">
                     <button (click)="onClick_Image()" class="btn btn-primary">Upload Image</button>
                 </div>
             </div>
-
             <h1 *ngIf="!isEdit" class="name">{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</h1>
-
             <div *ngIf="isEdit" class="row">
                 <div class="form-group col-6">
                     <label>First Name</label>
@@ -58,6 +56,18 @@
                 <div class="form-group col-6">
                     <label>Last Name</label>
                     <input [(ngModel)]="profile.lastName" type="text" class="form-control" placeholder="Enter last name here" />
+                </div>
+                <div class="form-group col-4">
+                    <label>Google+ Link</label>
+                    <input [(ngModel)]="profile.googlePlusLink" type="text" class="form-control" placeholder="Enter Google+ link here" />
+                </div>
+                <div class="form-group col-4">
+                    <label>LinkedIn Link</label>
+                    <input [(ngModel)]="profile.linkedInLink" type="text" class="form-control" placeholder="Enter LinkedIn link here" />
+                </div>
+                <div class="form-group col-4">
+                    <label>Twitter Link</label>
+                    <input [(ngModel)]="profile.twitterLink" type="text" class="form-control" placeholder="Enter Twitter link here" />
                 </div>
             </div>
 
@@ -381,8 +391,6 @@
                 </div>
             </div>
         </div>
-
-
         <div *ngIf="profile != null && isEdit">
             <div *ngFor="let item of profile.portfolio" class="row">
                 <div class="form-group col-6">
@@ -424,33 +432,15 @@
                 <button (click)="onClick_AddPortfolioItem()" class="btn btn-success pull-right">Save</button>
             </div>
         </div>
-
-
     </section>
     <section id="contact-section" class="contact-section section">
         <h2 class="section-title">Get in Touch</h2>
         <div *ngIf="profile != null && !isEdit" class="intro">
             <img class="profile-image" src="http://via.placeholder.com/300x300" alt="">
             <div class="dialog">
-                <p>I'm currently taking on freelance work. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                    commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
-                    Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
-                    Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
                 <p>
-                    <strong>I can help with the following:</strong>
+                    {{ profile.message }}
                 </p>
-                <ul class="list-unstyled service-list">
-                    <li>
-                        <i class="fa fa-check" aria-hidden="true"></i> App development with ReactJS</li>
-                    <li>
-                        <i class="fa fa-check" aria-hidden="true"></i> Front-end development with AngularJS</li>
-                    <li>
-                        <i class="fa fa-check" aria-hidden="true"></i> Back-end development with Django/Python</li>
-                    <li>
-                        <i class="fa fa-check" aria-hidden="true"></i> UI development</li>
-                    <li>
-                        <i class="fa fa-check" aria-hidden="true"></i> UX prototyping</li>
-                </ul>
                 <p>Drop me a line at
                     <a href="mailto: {{ profile == null? '' : profile.emailAddress }}">{{ profile == null? '' : profile.emailAddress }}</a> or call me at
                     <a href="tel: {{ profile == null? '' : profile.contactNumber }}">{{ profile == null? '' : profile.contactNumber }}</a>
@@ -472,6 +462,12 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+        </div>
+        <div *ngIf="profile != null && isEdit" class="row">
+            <div class="form-group col-12">
+                <label>Message</label>
+                <textarea [(ngModel)]="profile.message " type="text" class="form-control" rows="5" placeholder="Enter message here"></textarea>
             </div>
         </div>
     </section>

@@ -14,6 +14,7 @@ export class Profile {
         public image: string,
         public lastName: string,
         public linkedInLink: string,
+        public message: string,
         public portfolio: PortfolioItem[],
         public skills: Skill[],
         public twitterLink: string,

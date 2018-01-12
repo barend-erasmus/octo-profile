@@ -33,6 +33,7 @@ export class ProfileService {
       'https://media-exp2.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAVqAAAAJDk4NTNjMDc4LTczNTctNDZmMC1iMGEyLWQyOTg3ODFhN2E3Mw.jpg',
       'Erasmus',
       'https://www.linkedin.com/in/developersworkspace/',
+      null,
       [
         new PortfolioItem(
           'BragStones is a mobile application where proud users can create scrapbook albums about their children and/or grandchildren.',
