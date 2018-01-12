@@ -1,12 +1,19 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link id="theme-style" rel="stylesheet" href="/assets/resume-1/css/styles.css">
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
 <header class="header">
     <div class="top-bar container-fluid">
-        <div *ngIf="!isEdit" class="actions">
-            <a class="btn d-none d-md-inline-block" href="mailto: {{ profile == null? '' : profile.emailAddress }}">
+        <div class="actions">
+            <a *ngIf="!isEdit" class="btn d-none d-md-inline-block" href="mailto: {{ profile == null? '' : profile.emailAddress }}">
                 <i class="fa fa-paper-plane" aria-hidden="true"></i> Hire Me
             </a>
+            <button *ngIf="!isEdit" (click)="onClick_Edit()" class="btn d-none d-md-inline-block">
+                <i class="fa fa-edit" aria-hidden="true"></i> Edit
+            </button>
+            <button *ngIf="isEdit" (click)="onClick_Save()" class="btn d-none d-md-inline-block">
+                <i class="fa fa-save" aria-hidden="true"></i> Save
+            </button>
         </div>
         <ul *ngIf="!isEdit" class="social list-inline">
             <li *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)" class="list-inline-item">
@@ -28,8 +35,14 @@
     </div>
     <div class="intro">
         <div class="container text-center">
-            <img class="profile-image" src="{{ profile == null? 'http://via.placeholder.com/350x350' : (profile.image == null? 'http://via.placeholder.com/350x350' : profile.image) }}"
+            <img class="profile-image" src="{{ profile == null? 'http://via.placeholder.com/350x350' : (profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml) }}"
                 alt="">
+
+            <div *ngIf="isEdit" class="row">
+                <div class="form-group col-12">
+                    <input (change)="onChange_Image($event)" type="file" />
+                </div>
+            </div>
 
             <h1 *ngIf="!isEdit" class="name">{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</h1>
 
@@ -44,7 +57,7 @@
                 </div>
             </div>
 
-            <div *ngIf="!isEdit" class="title">{{ profile == null? '' : profile.workExperiences[0].position }}</div>
+            <div *ngIf="!isEdit" class="title">{{ profile == null? '' : (profile.workExperiences.length > 0? profile.workExperiences[0].position : '') }}</div>
 
             <div *ngIf="!isEdit" class="profile">
                 <p>{{ profile.about }}</p>
@@ -180,12 +193,11 @@
             </div>
             <div class="form-group col-6">
                 <label>Date of Employment</label>
-                <input [(ngModel)]="newWorkExperience.from" type="date" class="form-control" placeholder="Enter date of employment here"
-                />
+                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.from">
             </div>
             <div class="form-group col-6">
                 <label>Date of Termination</label>
-                <input [(ngModel)]="newWorkExperience.to" type="date" class="form-control" placeholder="Enter date of termination here" />
+                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.to">
             </div>
             <div class="form-group col-12">
                 <label>Description</label>
@@ -210,6 +222,31 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="profile != null && isEdit">
+            <div *ngFor="let education of profile.education" class="row">
+                <div class="form-group col-6">
+                    <label>Institution Name</label>
+                    <input [(ngModel)]="education.institutionName" type="text" class="form-control" placeholder="Enter institution name here"
+                    />
+                </div>
+                <div class="form-group col-6">
+                    <label>Qualification</label>
+                    <input [(ngModel)]="education.qualification" type="text" class="form-control" placeholder="Enter qualification here" />
+                </div>
+                <div class="form-group col-6">
+                    <label>Start Date</label>
+                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.from">
+                </div>
+                <div class="form-group col-6">
+                    <label>End Date</label>
+                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.to">
+                </div>
+                <div class="form-group col-12">
+                    <label>Description</label>
+                    <textarea [(ngModel)]="education.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                </div>
+            </div>
+        </div>
         <div *ngIf="profile != null && isEdit" class="row">
             <div class="form-group col-6">
                 <label>Institution Name</label>
@@ -218,23 +255,22 @@
             </div>
             <div class="form-group col-6">
                 <label>Qualification</label>
-                <input [(ngModel)]="newWorkExperience.qualification" type="text" class="form-control" placeholder="Enter qualification here" />
+                <input [(ngModel)]="newEducation.qualification" type="text" class="form-control" placeholder="Enter qualification here" />
             </div>
             <div class="form-group col-6">
                 <label>Start Date</label>
-                <input [(ngModel)]="newWorkExperience.from" type="date" class="form-control" placeholder="Enter start date here"
-                />
+                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newEducation.from">
             </div>
             <div class="form-group col-6">
                 <label>End Date</label>
-                <input [(ngModel)]="newWorkExperience.to" type="date" class="form-control" placeholder="Enter end date here" />
+                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newEducation.to">
             </div>
             <div class="form-group col-12">
                 <label>Description</label>
-                <textarea [(ngModel)]="newWorkExperience.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                <textarea [(ngModel)]="newEducation.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
             </div>
             <div class="form-group col-12">
-                <button (click)="onClick_AddWorkExperience()" class="btn btn-success pull-right">Save</button>
+                <button (click)="onClick_AddEducation()" class="btn btn-success pull-right">Save</button>
             </div>
         </div>
     </section>
@@ -242,7 +278,7 @@
         <h2 class="section-title">Professional Skills</h2>
         <div class="top-skills">
             <h3 class="subtitle">Top Skills</h3>
-            <div *ngIf="profile != null" class="row">
+            <div *ngIf="profile != null && !isEdit" class="row">
                 <div *ngFor="let skill of profile.skills" class="item col-12 col-md-4">
                     <div class="item-inner">
                         <h4 class="skill-name">{{ skill.name }}</h4>
@@ -250,6 +286,57 @@
                         <div class="desc"> {{ skill.description }} </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div *ngIf="profile != null && isEdit">
+            <div *ngFor="let skill of profile.skills" class="row">
+                <div class="form-group col-4">
+                    <label>Name</label>
+                    <input [(ngModel)]="skill.name" type="text" class="form-control" placeholder="Enter name here" />
+                </div>
+                <div class="form-group col-4">
+                    <label>Level</label>
+                    <select [(ngModel)]="skill.level" class="form-control">
+                        <option [ngValue]="'Novice'">Novice</option>
+                        <option [ngValue]="'Intermediate'">Intermediate</option>
+                        <option [ngValue]="'Advanced'">Advanced</option>
+                        <option [ngValue]="'Superior'">Superior</option>
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    <label>Years</label>
+                    <input [(ngModel)]="skill.years" type="number" class="form-control" placeholder="Enter years here" />
+                </div>
+                <div class="form-group col-12">
+                    <label>Description</label>
+                    <textarea [(ngModel)]="skill.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="profile != null && isEdit" class="row">
+            <div class="form-group col-4">
+                <label>Name</label>
+                <input [(ngModel)]="newSkill.name" type="text" class="form-control" placeholder="Enter name here" />
+            </div>
+            <div class="form-group col-4">
+                <label>Level</label>
+                <select [(ngModel)]="newSkill.level" class="form-control">
+                    <option [ngValue]="'Novice'">Novice</option>
+                    <option [ngValue]="'Intermediate'">Intermediate</option>
+                    <option [ngValue]="'Advanced'">Advanced</option>
+                    <option [ngValue]="'Superior'">Superior</option>
+                </select>
+            </div>
+            <div class="form-group col-4">
+                <label>Years</label>
+                <input [(ngModel)]="newSkill.years" type="number" class="form-control" placeholder="Enter years here" />
+            </div>
+            <div class="form-group col-12">
+                <label>Description</label>
+                <textarea [(ngModel)]="newSkill.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+            </div>
+            <div class="form-group col-12">
+                <button (click)="onClick_AddSkill()" class="btn btn-success pull-right">Save</button>
             </div>
         </div>
         <!-- <div class="other-skills">
