@@ -3,7 +3,7 @@ export class Skill {
         public description: string,
         public level: string,
         public name: string,
-        public years: number,       
+        public years: number,
     ) {
 
     }

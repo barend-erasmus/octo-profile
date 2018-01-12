@@ -14,7 +14,7 @@ import { PortfolioItem } from '../models/portfolio-item';
 })
 export class Resume1Component implements OnInit {
 
-  public isEdit: boolean = true;
+  public isEdit = true;
 
   public newEducation: Education = new Education(null, new Date(), null, null, new Date());
 
