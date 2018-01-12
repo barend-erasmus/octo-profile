@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Profile } from '../models/profile';
 import { WorkExperience } from '../models/work-experience';
 import { Education } from '../models/education';
 import { Skill } from '../models/skill';
+import { PortfolioItem } from '../models/portfolio-item';
 
 @Component({
   selector: 'app-resume-1',
@@ -37,8 +39,12 @@ export class Resume1Component implements OnInit {
 
   public newSkill: Skill = new Skill(null, null, null, null);
 
+  public newPortfolioItem: PortfolioItem = new PortfolioItem(null, null, null, null);
+  public tempPortfolioItem: PortfolioItem = null;
+
   constructor(
     private profileService: ProfileService,
+    private element: ElementRef,
   ) { }
 
   public ngOnInit(): void {
@@ -65,12 +71,29 @@ export class Resume1Component implements OnInit {
     this.newSkill = new Skill(null, null, null, null);
   }
 
+  public onClick_AddPortfolioItem(): void {
+    this.profile.portfolio.push(this.newPortfolioItem);
+
+    this.newPortfolioItem = new PortfolioItem(null, null, null, null);
+  }
+
   public onClick_Save(): void {
     this.isEdit = false;
+
+    console.log(this.profile);
   }
 
   public onClick_Edit(): void {
     this.isEdit = true;
+  }
+
+  public onClick_Image(): void {
+    this.element.nativeElement.querySelector('input#onChange_Image').click();
+  }
+
+  public onClick_PortfolioItemImage(portfolioItem: PortfolioItem): void {
+    this.tempPortfolioItem = portfolioItem;
+    this.element.nativeElement.querySelector('input#onChange_PortfolioItemImage').click();
   }
 
   public onChange_Image(event): void {
@@ -87,6 +110,28 @@ export class Resume1Component implements OnInit {
       reader.onerror = (error) => {
 
       };
+
+      event.target.value = '';
+    }
+  }
+
+
+  public onChange_PortfolioItemImage(event): void {
+    const fileList: FileList = event.target.files;
+
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.tempPortfolioItem.image = reader.result;
+      };
+      reader.onerror = (error) => {
+
+      };
+
+      event.target.value = '';
     }
   }
 

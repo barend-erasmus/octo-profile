@@ -2,6 +2,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link id="theme-style" rel="stylesheet" href="/assets/resume-1/css/styles.css">
 <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+
+<input id="onChange_Image" (change)="onChange_Image($event)" type="file" style="visibility: hidden;" />
+<input id="onChange_PortfolioItemImage" (change)="onChange_PortfolioItemImage($event)" type="file" style="visibility: hidden;" />
+
 <header class="header">
     <div class="top-bar container-fluid">
         <div class="actions">
@@ -40,7 +44,7 @@
 
             <div *ngIf="isEdit" class="row">
                 <div class="form-group col-12">
-                    <input (change)="onChange_Image($event)" type="file" />
+                    <button (click)="onClick_Image()" class="btn btn-primary">Upload Image</button>
                 </div>
             </div>
 
@@ -165,11 +169,11 @@
                 </div>
                 <div class="form-group col-6">
                     <label>Date of Employment</label>
-                    <input [(ngModel)]="workExperience.from" type="date" class="form-control" placeholder="Enter date of employment here" />
+                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.from">
                 </div>
                 <div class="form-group col-6">
                     <label>Date of Termination</label>
-                    <input [(ngModel)]="workExperience.to" type="date" class="form-control" placeholder="Enter date of termination here" />
+                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.to">
                 </div>
                 <div class="form-group col-12">
                     <label>Description</label>
@@ -235,11 +239,11 @@
                 </div>
                 <div class="form-group col-6">
                     <label>Start Date</label>
-                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.from">
+                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="education.from">
                 </div>
                 <div class="form-group col-6">
                     <label>End Date</label>
-                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.to">
+                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="education.to">
                 </div>
                 <div class="form-group col-12">
                     <label>Description</label>
@@ -358,7 +362,7 @@
     </section>
     <section id="portfolio-section" class="portfolio-section section">
         <h2 class="section-title">Portfolio</h2>
-        <div *ngIf="profile != null" class="items-wrapper isotope row">
+        <div *ngIf="profile != null && !isEdit" class="items-wrapper isotope row">
             <div *ngFor="let item of profile.portfolio" class="item col-lg-3 col-6">
                 <div class="item-inner">
                     <figure class="figure">
@@ -377,10 +381,55 @@
                 </div>
             </div>
         </div>
+
+
+        <div *ngIf="profile != null && isEdit">
+            <div *ngFor="let item of profile.portfolio" class="row">
+                <div class="form-group col-6">
+                    <label>Name</label>
+                    <input [(ngModel)]="item.name" type="text" class="form-control" placeholder="Enter name here" />
+                </div>
+                <div class="form-group col-6">
+                    <label>Link</label>
+                    <input [(ngModel)]="item.link" type="text" class="form-control" placeholder="Enter link here" />
+                </div>
+                <div class="form-group col-12">
+                    <img class="img" src="{{ item.image }}" alt="" width="75" />
+                    <button (click)="onClick_PortfolioItemImage(item)" class="btn btn-primary">Upload Image</button>
+                </div>
+                <div class="form-group col-12">
+                    <label>Description</label>
+                    <textarea [(ngModel)]="item.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="profile != null && isEdit" class="row">
+            <div class="form-group col-6">
+                <label>Name</label>
+                <input [(ngModel)]="newPortfolioItem.name" type="text" class="form-control" placeholder="Enter name here" />
+            </div>
+            <div class="form-group col-6">
+                <label>Link</label>
+                <input [(ngModel)]="newPortfolioItem.link" type="text" class="form-control" placeholder="Enter link here" />
+            </div>
+            <div class="form-group col-12">
+                <img class="img" src="{{ newPortfolioItem.image }}" alt="" width="75" />
+                <button (click)="onClick_PortfolioItemImage(newPortfolioItem)" class="btn btn-primary">Upload Image</button>
+            </div>
+            <div class="form-group col-12">
+                <label>Description</label>
+                <textarea [(ngModel)]="newPortfolioItem.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+            </div>
+            <div class="form-group col-12">
+                <button (click)="onClick_AddPortfolioItem()" class="btn btn-success pull-right">Save</button>
+            </div>
+        </div>
+
+
     </section>
     <section id="contact-section" class="contact-section section">
         <h2 class="section-title">Get in Touch</h2>
-        <div class="intro">
+        <div *ngIf="profile != null && !isEdit" class="intro">
             <img class="profile-image" src="http://via.placeholder.com/300x300" alt="">
             <div class="dialog">
                 <p>I'm currently taking on freelance work. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
