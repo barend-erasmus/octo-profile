@@ -1,0 +1,90 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link id="theme-style" rel="stylesheet" href="/assets/resume-2/css/styles.css">
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+
+<div class="container">
+  <div class="row">
+     <div class="col-xs-12">
+        <div id="photo-header" class="text-center">
+           <div id="photo"> <img src="{{ profile == null? 'http://via.placeholder.com/350x350' : (profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml) }}" alt="avatar"> </div>
+           <div id="text-header">
+              <h1>Hello,<br>my name is <span>{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</span> and this is my resume/cv</h1>
+           </div>
+        </div>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-xs-12 col-sm-7">
+        <div class="box">
+           <h2>About Me</h2>
+           <p>{{ profile.about }}</p>
+        </div>
+        <div class="box">
+           <h2>Education</h2>
+           <ul id="education" class="clearfix">
+              <li *ngFor="let education of profile.education">
+                 <div class="year pull-left">{{ education.from | date: 'yyyy' }}</div>
+                 <div class="description pull-right">
+                    <h3>{{ education.institutionName }}</h3>
+                    <p>{{ education.description }}</p>
+                 </div>
+              </li>
+           </ul>
+        </div>
+        <div class="box">
+           <h2>Experiences</h2>
+           <div *ngFor="let workExperience of profile.workExperiences" class="job clearfix">
+              <div class="col-xs-3">
+                 <div class="where">{{ workExperience.companyName }}</div>
+                 <div class="year">{{ workExperience.from | date: 'MMMM yyyy' }} - {{ workExperience.currentlyEmployed? 'Present' : workExperience.to
+                  | date: 'MMMM yyyy' }}</div>
+              </div>
+              <div class="col-xs-9">
+                 <div class="profession">{{ workExperience.position }}</div>
+                 <div class="description">{{ workExperience.description }}</div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="col-xs-12 col-sm-5">
+        <div class="box clearfix">
+           <h2>Contact</h2>
+           <div class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
+              <div class="title only pull-right">{{ profile == null? '' : profile.contactNumber }}</div>
+           </div>
+           <div class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
+              <div class="title only pull-right">{{ profile == null? '' : profile.emailAddress }}</div>
+           </div>
+           <div *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)" class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-linkedin fa-fw"></span></div>
+              <div class="title pull-right">LinkedIn</div>
+              <div class="description pull-right">{{ profile.linkedInLink }}/div>
+           </div>
+           <div *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)" class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-twitter fa-fw"></span></div>
+              <div class="title pull-right">Twitter</div>
+              <div class="description pull-right">{{ profile.twitterLink }}</div>
+           </div>
+           <div *ngIf="profile == null? false : (profile.googlePlusLink == null? false : profile.googlePlusLink)" class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-google-plus fa-fw"></span></div>
+            <div class="title pull-right">Google +</div>
+            <div class="description pull-right">{{ profile.googlePlusLink }}</div>
+         </div>
+           <div class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-globe fa-fw"></span></div>
+              <div class="title pull-right">Website</div>
+              <div class="description pull-right">{{ profile == null? '' : profile.website }}</div>
+           </div>
+        </div>
+        <div class="box">
+           <h2>Skills</h2>
+           <div class="skills">
+              <div *ngFor="let skill of profile.skills" class="item-skills" [style.width]="skill.level == 'Novice'? '25%' : (skill.level == 'Intermediate'? '50%' : (skill.level == 'Advanced'? '75%' : (skill.level == 'Superior'? '100%' : '0%')))">{{ skill.name }}</div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

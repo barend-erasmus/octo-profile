@@ -29,7 +29,7 @@ export class ProfileService {
       ],
       'developersworkspace@gmail.com',
       'Barend',
-      null,
+      'https://plus.google.com/u/0/104510562212077465584',
       'https://media-exp2.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAVqAAAAJDk4NTNjMDc4LTczNTctNDZmMC1iMGEyLWQyOTg3ODFhN2E3Mw.jpg',
       'Erasmus',
       'https://www.linkedin.com/in/developersworkspace/',
@@ -289,6 +289,7 @@ export class ProfileService {
       [
         new WorkExperience(
           'Euromonitor International',
+          true,
           'Passport is a global market research database providing insight on industries, economies and consumers worldwide, helping our clients analyse market context and identify future trends impacting businesses globally.',
           new Date(2016, 2, 1),
           'Cape Town, South Africa',
@@ -297,6 +298,7 @@ export class ProfileService {
         ),
         new WorkExperience(
           'Synapseon',
+          true,
           'Synapseon is a software company based in Cape Town, South Africa, and Vancouver, BC, Canada. We specialize in the design, development and support of medical and human resources applications for the cruise line industry.',
           new Date(2017, 4, 1),
           'Cape Town, South Africa',
@@ -305,6 +307,7 @@ export class ProfileService {
         ),
         new WorkExperience(
           'South African Database for Functional Measures',
+          false,
           'The South African Database for Functional Measures’ (SADFM) primary mission is to contribute to the development of nursing as an empirical science in South Africa. To achieve this, the SADFM’s researched and developed new generation nursing measures on patient outcomes. The measures provide additional standardised data on patient improvement or decline.',
           new Date(2016, 3, 1),
           'Cape Town, South Africa',
@@ -313,6 +316,7 @@ export class ProfileService {
         ),
         new WorkExperience(
           'Return True',
+          false,
           'We have built a team of highly skilled individuals, all experts in the field of mobile applications, web applications, service-oriented architecture, real-time database systems and Business Intelligence. Our vision is to use our abilities, skill and diligence to be the first choice software product development company in South Africa.',
           new Date(2014, 11, 1),
           'Cape Town, South Africa',

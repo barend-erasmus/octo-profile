@@ -3,8 +3,8 @@
 <link id="theme-style" rel="stylesheet" href="/assets/resume-1/css/styles.css">
 <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
 
-<input id="onChange_Image" (change)="onChange_Image($event)" type="file" style="visibility: hidden;" />
-<input id="onChange_PortfolioItemImage" (change)="onChange_PortfolioItemImage($event)" type="file" style="visibility: hidden;"
+<input id="onChange_Image" (change)="onChange_Image($event)" type="file" style="display: none;" />
+<input id="onChange_PortfolioItemImage" (change)="onChange_PortfolioItemImage($event)" type="file" style="display: none;"
 />
 
 <header class="header">
@@ -153,7 +153,7 @@
                 </div>
                 <div class="job-meta">
                     <div class="title">{{ workExperience.position }}</div>
-                    <div class="time">{{ workExperience.from | date: 'MMMM yyyy' }} - {{ workExperience.to == null? 'Present' : workExperience.to
+                    <div class="time">{{ workExperience.from | date: 'MMMM yyyy' }} - {{ workExperience.currentlyEmployed? 'Present' : workExperience.to
                         | date: 'MMMM yyyy' }}</div>
                 </div>
                 <div class="job-desc">
@@ -179,11 +179,14 @@
                 </div>
                 <div class="form-group col-6">
                     <label>Date of Employment</label>
-                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.from">
+                    <input bsDatepicker [(bsValue)]="workExperience.from" #dp="bsDatepicker" type="text" class="form-control">
                 </div>
                 <div class="form-group col-6">
                     <label>Date of Termination</label>
-                    <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.to">
+                    <input [disabled]="workExperience.currentlyEmployed" bsDatepicker [(bsValue)]="workExperience.to" #dp="bsDatepicker" type="text"
+                        class="form-control">
+                    <input [(ngModel)]="workExperience.currentlyEmployed" type="checkbox" id="currentlyEmployed">
+                    <label class="form-check-label" for="currentlyEmployed">Currently employed</label>
                 </div>
                 <div class="form-group col-12">
                     <label>Description</label>
@@ -211,7 +214,10 @@
             </div>
             <div class="form-group col-6">
                 <label>Date of Termination</label>
-                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.to">
+                <input [disabled]="newWorkExperience.currentlyEmployed" bsDatepicker [(bsValue)]="newWorkExperience.to" #dp="bsDatepicker"
+                    type="text" class="form-control">
+                <input [(ngModel)]="newWorkExperience.currentlyEmployed" type="checkbox" id="currentlyEmployed">
+                <label class="form-check-label" for="currentlyEmployed">Currently employed</label>
             </div>
             <div class="form-group col-12">
                 <label>Description</label>
