@@ -1,0 +1,263 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.2/metisMenu.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/admin/css/styles.css">
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+
+<input id="onChange_Image" (change)="onChange_Image($event)" type="file" style="display: none;" />
+<input id="onChange_PortfolioItemImage" (change)="onChange_PortfolioItemImage($event)" type="file" style="display: none;"
+/>
+
+<div id="header">
+    <div class="color-line"> </div>
+    <div id="logo" class="light-version">
+        <span> Octo Profile </span>
+    </div>
+    <nav role="navigation">
+        <div class="header-link hide-menu">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="small-logo">
+            <span class="text-primary">Octo Profile</span>
+        </div>
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li>
+                    <a>
+                        <i class="fa fa-sign-out"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <a href="index-2.html">
+                <img src="http://via.placeholder.com/50x50" class="img-circle m-b" alt="logo"> </a>
+            <div class="stats-label text-color">
+                <span class="font-extra-bold font-uppercase">Robert Razer</span>
+            </div>
+        </div>
+        <ul class="nav" id="side-menu">
+            <li>
+                <a href="index-2.html">
+                    <span class="nav-label">Dashboard</span>
+                    <span class="label label-success pull-right">v.1</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div id="wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12 text-center welcome-message">
+                <h2> Welcome to Octo Profile </h2>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in lacus urna. Mauris tellus orci, commodo
+                    a ante et, dapibus varius urna. </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-title text-center">
+                        Details
+                    </div>
+                    <div class="panel-body text-center">
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <button (click)="onClick_Image()" class="btn btn-primary">Upload Image</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label>First Name</label>
+                                <input [(ngModel)]="profile.firstName" type="text" class="form-control" placeholder="Enter first name here" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Last Name</label>
+                                <input [(ngModel)]="profile.lastName" type="text" class="form-control" placeholder="Enter last name here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Google+ Link</label>
+                                <input [(ngModel)]="profile.googlePlusLink" type="text" class="form-control" placeholder="Enter Google+ link here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>LinkedIn Link</label>
+                                <input [(ngModel)]="profile.linkedInLink" type="text" class="form-control" placeholder="Enter LinkedIn link here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Twitter Link</label>
+                                <input [(ngModel)]="profile.twitterLink" type="text" class="form-control" placeholder="Enter Twitter link here" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label>Email Address</label>
+                                <input [(ngModel)]="profile.emailAddress" type="text" class="form-control" placeholder="Enter email address here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Contact Number</label>
+                                <input [(ngModel)]="profile.contactNumber" type="text" class="form-control" placeholder="Enter contact number here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Website</label>
+                                <input [(ngModel)]="profile.website" type="text" class="form-control" placeholder="Enter website here" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <textarea [(ngModel)]="profile.about" type="text" class="form-control" rows="5" placeholder="Enter about here"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer"> This is standard panel footer </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-title text-center">
+                        Work Experiences
+                    </div>
+                    <div class="panel-body text-center">
+                        <div *ngFor="let workExperience of profile.workExperiences" class="row well">
+                            <div class="form-group col-lg-4">
+                                <label>Company Name</label>
+                                <input [(ngModel)]="workExperience.companyName" type="text" class="form-control" placeholder="Enter company name here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Location</label>
+                                <input [(ngModel)]="workExperience.location" type="text" class="form-control" placeholder="Enter location here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Position</label>
+                                <input [(ngModel)]="workExperience.position" type="text" class="form-control" placeholder="Enter position here" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Date of Employment</label>
+                                <input bsDatepicker [(bsValue)]="workExperience.from" #dp="bsDatepicker" type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Date of Termination</label>
+                                <input [disabled]="workExperience.currentlyEmployed" bsDatepicker [(bsValue)]="workExperience.to" #dp="bsDatepicker" type="text"
+                                    class="form-control">
+                                <input [(ngModel)]="workExperience.currentlyEmployed" type="checkbox" id="currentlyEmployed">
+                                <label class="form-check-label" for="currentlyEmployed">Currently employed</label>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="workExperience.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="row well">
+                            <div class="form-group col-lg-4">
+                                <label>Company Name</label>
+                                <input [(ngModel)]="newWorkExperience.companyName" type="text" class="form-control" placeholder="Enter company name here"
+                                />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Location</label>
+                                <input [(ngModel)]="newWorkExperience.location" type="text" class="form-control" placeholder="Enter location here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Position</label>
+                                <input [(ngModel)]="newWorkExperience.position" type="text" class="form-control" placeholder="Enter position here" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Date of Employment</label>
+                                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newWorkExperience.from">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Date of Termination</label>
+                                <input [disabled]="newWorkExperience.currentlyEmployed" bsDatepicker [(bsValue)]="newWorkExperience.to" #dp="bsDatepicker"
+                                    type="text" class="form-control">
+                                <input [(ngModel)]="newWorkExperience.currentlyEmployed" type="checkbox" id="currentlyEmployed">
+                                <label class="form-check-label" for="currentlyEmployed">Currently employed</label>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="newWorkExperience.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <button (click)="onClick_AddWorkExperience()" class="btn btn-success pull-right">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer"> This is standard panel footer </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-title text-center">
+                        Education
+                    </div>
+                    <div class="panel-body text-center">
+                        <div *ngFor="let education of profile.education" class="row well">
+                            <div class="form-group col-lg-6">
+                                <label>Institution Name</label>
+                                <input [(ngModel)]="education.institutionName" type="text" class="form-control" placeholder="Enter institution name here"
+                                />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Qualification</label>
+                                <input [(ngModel)]="education.qualification" type="text" class="form-control" placeholder="Enter qualification here" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Start Date</label>
+                                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="education.from">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>End Date</label>
+                                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="education.to">
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="education.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row well">
+                            <div class="form-group col-lg-6">
+                                <label>Institution Name</label>
+                                <input [(ngModel)]="newEducation.institutionName" type="text" class="form-control" placeholder="Enter institution name here"
+                                />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Qualification</label>
+                                <input [(ngModel)]="newEducation.qualification" type="text" class="form-control" placeholder="Enter qualification here" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Start Date</label>
+                                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newEducation.from">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>End Date</label>
+                                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="newEducation.to">
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="newEducation.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <button (click)="onClick_AddEducation()" class="btn btn-success pull-right">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer"> This is standard panel footer </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="footer">
+        <span class="pull-right"> Example text </span> Company 2015-2020 </footer>
+</div>

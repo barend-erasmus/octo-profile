@@ -24,7 +24,7 @@
            <h2>Education</h2>
            <ul id="education" class="clearfix">
               <li *ngFor="let education of profile.education">
-                 <div class="year pull-left">{{ education.from | date: 'yyyy' }}</div>
+                 <div class="year pull-left">{{ education.to | date: 'yyyy' }}</div>
                  <div class="description pull-right">
                     <h3>{{ education.institutionName }}</h3>
                     <p>{{ education.description }}</p>
@@ -61,7 +61,7 @@
            <div *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)" class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-linkedin fa-fw"></span></div>
               <div class="title pull-right">LinkedIn</div>
-              <div class="description pull-right">{{ profile.linkedInLink }}/div>
+              <div class="description pull-right">{{ profile.linkedInLink }}</div>
            </div>
            <div *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)" class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-twitter fa-fw"></span></div>

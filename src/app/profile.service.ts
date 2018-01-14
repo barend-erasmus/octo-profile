@@ -14,7 +14,7 @@ export class ProfileService {
 
   }
 
-  public get(): Observable<Profile> {
+  public get(id: string): Observable<Profile> {
     return Observable.of(new Profile(
       'Experienced Software Engineer with a demonstrated history of working in the agriculture and medical industry.',
       '+27 76 654 2813',

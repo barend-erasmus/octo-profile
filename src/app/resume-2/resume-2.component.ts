@@ -10,10 +10,7 @@ import { ResumeBaseComponent } from '../resume-base/resume-base.component';
 })
 export class Resume2Component extends ResumeBaseComponent implements OnInit {
 
-  constructor(
-    element: ElementRef,
-    profileService: ProfileService,
-  ) { 
-    super(element, profileService);
+  constructor() { 
+    super();
   }
 }
