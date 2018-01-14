@@ -1,1 +1,3 @@
-<app-resume-2 [profile]="profile"></app-resume-2>
+<app-resume-1 *ngIf="profile != null && profile.type == 'resume-1'" [profile]="profile"></app-resume-1>
+<app-resume-2 *ngIf="profile != null && profile.type == 'resume-2'" [profile]="profile"></app-resume-2>
+<app-resume-3 *ngIf="profile != null && profile.type == 'resume-3'" [profile]="profile"></app-resume-3>

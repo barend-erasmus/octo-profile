@@ -30,9 +30,10 @@ export class ProfileService {
       'developersworkspace@gmail.com',
       'Barend',
       'https://plus.google.com/u/0/104510562212077465584',
+      'barend-erasmus',
       'https://media-exp2.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAVqAAAAJDk4NTNjMDc4LTczNTctNDZmMC1iMGEyLWQyOTg3ODFhN2E3Mw.jpg',
       'Erasmus',
-      'https://www.linkedin.com/in/developersworkspace/',
+      'https://www.linkedin.com/in/developersworkspace',
       null,
       [
         new PortfolioItem(
@@ -285,6 +286,7 @@ export class ProfileService {
         ),
       ],
       null,
+      'resume-3',
       'https://developersworkspace.co.za',
       [
         new WorkExperience(

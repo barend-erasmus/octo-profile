@@ -1,6 +1,6 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link id="theme-style" rel="stylesheet" href="/assets/resume-1/css/styles.css">
+<link rel="stylesheet" href="/assets/resume-1/css/styles.css">
 
 <header class="header">
     <div class="top-bar container-fluid">
@@ -83,7 +83,7 @@
 <div class="wrapper container">
     <section id="experiences-section" class="experiences-section section">
         <h2 class="section-title">Work Experiences</h2>
-        <div *ngIf="profile != null" class="timeline">
+        <div class="timeline">
             <div *ngFor="let workExperience of profile.workExperiences" class="item">
                 <div class="work-place">
                     <h3 class="place">{{ workExperience.companyName }}</h3>
@@ -106,7 +106,7 @@
     </section>
     <section id="education-section" class="education-section section">
         <h2 class="section-title">Education</h2>
-        <div *ngIf="profile != null" class="row">
+        <div class="row">
             <div *ngFor="let education of profile.education" class="item col-12 col-md-4">
                 <div class="item-inner">
                     <h3 class="degree">{{ education.qualification }}</h3>
@@ -123,7 +123,7 @@
         <h2 class="section-title">Professional Skills</h2>
         <div class="top-skills">
             <h3 class="subtitle">Top Skills</h3>
-            <div *ngIf="profile != null" class="row">
+            <div class="row">
                 <div *ngFor="let skill of profile.skills" class="item col-12 col-md-4">
                     <div class="item-inner">
                         <h4 class="skill-name">{{ skill.name }}</h4>
@@ -131,57 +131,6 @@
                         <div class="desc"> {{ skill.description }} </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div *ngIf="profile != null && isEdit">
-            <div *ngFor="let skill of profile.skills" class="row">
-                <div class="form-group col-4">
-                    <label>Name</label>
-                    <input [(ngModel)]="skill.name" type="text" class="form-control" placeholder="Enter name here" />
-                </div>
-                <div class="form-group col-4">
-                    <label>Level</label>
-                    <select [(ngModel)]="skill.level" class="form-control">
-                        <option [ngValue]="'Novice'">Novice</option>
-                        <option [ngValue]="'Intermediate'">Intermediate</option>
-                        <option [ngValue]="'Advanced'">Advanced</option>
-                        <option [ngValue]="'Superior'">Superior</option>
-                    </select>
-                </div>
-                <div class="form-group col-4">
-                    <label>Years</label>
-                    <input [(ngModel)]="skill.years" type="number" class="form-control" placeholder="Enter years here" />
-                </div>
-                <div class="form-group col-12">
-                    <label>Description</label>
-                    <textarea [(ngModel)]="skill.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="profile != null && isEdit" class="row">
-            <div class="form-group col-4">
-                <label>Name</label>
-                <input [(ngModel)]="newSkill.name" type="text" class="form-control" placeholder="Enter name here" />
-            </div>
-            <div class="form-group col-4">
-                <label>Level</label>
-                <select [(ngModel)]="newSkill.level" class="form-control">
-                    <option [ngValue]="'Novice'">Novice</option>
-                    <option [ngValue]="'Intermediate'">Intermediate</option>
-                    <option [ngValue]="'Advanced'">Advanced</option>
-                    <option [ngValue]="'Superior'">Superior</option>
-                </select>
-            </div>
-            <div class="form-group col-4">
-                <label>Years</label>
-                <input [(ngModel)]="newSkill.years" type="number" class="form-control" placeholder="Enter years here" />
-            </div>
-            <div class="form-group col-12">
-                <label>Description</label>
-                <textarea [(ngModel)]="newSkill.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
-            </div>
-            <div class="form-group col-12">
-                <button (click)="onClick_AddSkill()" class="btn btn-success pull-right">Save</button>
             </div>
         </div>
         <!-- <div class="other-skills">
@@ -203,7 +152,7 @@
     </section>
     <section id="portfolio-section" class="portfolio-section section">
         <h2 class="section-title">Portfolio</h2>
-        <div *ngIf="profile != null" class="items-wrapper isotope row">
+        <div class="items-wrapper isotope row">
             <div *ngFor="let item of profile.portfolio" class="item col-lg-3 col-6">
                 <div class="item-inner">
                     <figure class="figure">
@@ -222,51 +171,10 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="profile != null && isEdit">
-            <div *ngFor="let item of profile.portfolio" class="row">
-                <div class="form-group col-6">
-                    <label>Name</label>
-                    <input [(ngModel)]="item.name" type="text" class="form-control" placeholder="Enter name here" />
-                </div>
-                <div class="form-group col-6">
-                    <label>Link</label>
-                    <input [(ngModel)]="item.link" type="text" class="form-control" placeholder="Enter link here" />
-                </div>
-                <div class="form-group col-12">
-                    <img class="img" src="{{ item.image }}" alt="" width="75" />
-                    <button (click)="onClick_PortfolioItemImage(item)" class="btn btn-primary">Upload Image</button>
-                </div>
-                <div class="form-group col-12">
-                    <label>Description</label>
-                    <textarea [(ngModel)]="item.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="profile != null && isEdit" class="row">
-            <div class="form-group col-6">
-                <label>Name</label>
-                <input [(ngModel)]="newPortfolioItem.name" type="text" class="form-control" placeholder="Enter name here" />
-            </div>
-            <div class="form-group col-6">
-                <label>Link</label>
-                <input [(ngModel)]="newPortfolioItem.link" type="text" class="form-control" placeholder="Enter link here" />
-            </div>
-            <div class="form-group col-12">
-                <img class="img" src="{{ newPortfolioItem.image }}" alt="" width="75" />
-                <button (click)="onClick_PortfolioItemImage(newPortfolioItem)" class="btn btn-primary">Upload Image</button>
-            </div>
-            <div class="form-group col-12">
-                <label>Description</label>
-                <textarea [(ngModel)]="newPortfolioItem.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
-            </div>
-            <div class="form-group col-12">
-                <button (click)="onClick_AddPortfolioItem()" class="btn btn-success pull-right">Save</button>
-            </div>
-        </div>
     </section>
     <section id="contact-section" class="contact-section section">
         <h2 class="section-title">Get in Touch</h2>
-        <div *ngIf="profile != null" class="intro">
+        <div class="intro">
             <img class="profile-image" src="http://via.placeholder.com/300x300" alt="">
             <div class="dialog">
                 <p>
@@ -293,12 +201,6 @@
                         </a>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <div *ngIf="profile != null && isEdit" class="row">
-            <div class="form-group col-12">
-                <label>Message</label>
-                <textarea [(ngModel)]="profile.message " type="text" class="form-control" rows="5" placeholder="Enter message here"></textarea>
             </div>
         </div>
     </section>

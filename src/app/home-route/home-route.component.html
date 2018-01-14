@@ -113,6 +113,12 @@
                                 <textarea [(ngModel)]="profile.about" type="text" class="form-control" rows="5" placeholder="Enter about here"></textarea>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <label>Message</label>
+                                <textarea [(ngModel)]="profile.message " type="text" class="form-control" rows="5" placeholder="Enter message here"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-footer"> This is standard panel footer </div>
                 </div>
@@ -193,7 +199,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="hpanel">
@@ -224,7 +229,6 @@
                                 <textarea [(ngModel)]="education.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
                             </div>
                         </div>
-
                         <div class="row well">
                             <div class="form-group col-lg-6">
                                 <label>Institution Name</label>
@@ -256,8 +260,121 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-title text-center">
+                        Skills
+                    </div>
+                    <div class="panel-body text-center">
+                        <div *ngFor="let skill of profile.skills" class="row well">
+                            <div class="form-group col-lg-4">
+                                <label>Name</label>
+                                <input [(ngModel)]="skill.name" type="text" class="form-control" placeholder="Enter name here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Level</label>
+                                <select [(ngModel)]="skill.level" class="form-control">
+                                    <option [ngValue]="'Novice'">Novice</option>
+                                    <option [ngValue]="'Intermediate'">Intermediate</option>
+                                    <option [ngValue]="'Advanced'">Advanced</option>
+                                    <option [ngValue]="'Superior'">Superior</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Years</label>
+                                <input [(ngModel)]="skill.years" type="number" class="form-control" placeholder="Enter years here" />
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="skill.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                            </div>
+                        </div>
+                        <div class="row well">
+                            <div class="form-group col-lg-4">
+                                <label>Name</label>
+                                <input [(ngModel)]="newSkill.name" type="text" class="form-control" placeholder="Enter name here" />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Level</label>
+                                <select [(ngModel)]="newSkill.level" class="form-control">
+                                    <option [ngValue]="'Novice'">Novice</option>
+                                    <option [ngValue]="'Intermediate'">Intermediate</option>
+                                    <option [ngValue]="'Advanced'">Advanced</option>
+                                    <option [ngValue]="'Superior'">Superior</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Years</label>
+                                <input [(ngModel)]="newSkill.years" type="number" class="form-control" placeholder="Enter years here" />
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="newSkill.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <button (click)="onClick_AddSkill()" class="btn btn-success pull-right">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer"> This is standard panel footer </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-title text-center">
+                        Portfolio
+                    </div>
+                    <div class="panel-body text-center">
+                        <div *ngFor="let item of profile.portfolio" class="row well">
+                            <div class="form-group col-lg-6">
+                                <label>Name</label>
+                                <input [(ngModel)]="item.name" type="text" class="form-control" placeholder="Enter name here" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Link</label>
+                                <input [(ngModel)]="item.link" type="text" class="form-control" placeholder="Enter link here" />
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <img class="img" src="{{ item.image }}" alt="" width="75" />
+                                <button (click)="onClick_PortfolioItemImage(item)" class="btn btn-primary">Upload Image</button>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="item.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                            </div>
+                        </div>
+                        <div class="row well">
+                            <div class="form-group col-lg-6">
+                                <label>Name</label>
+                                <input [(ngModel)]="newPortfolioItem.name" type="text" class="form-control" placeholder="Enter name here" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Link</label>
+                                <input [(ngModel)]="newPortfolioItem.link" type="text" class="form-control" placeholder="Enter link here" />
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <img class="img" src="{{ newPortfolioItem.image }}" alt="" width="75" />
+                                <button (click)="onClick_PortfolioItemImage(newPortfolioItem)" class="btn btn-primary">Upload Image</button>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="newPortfolioItem.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <button (click)="onClick_AddPortfolioItem()" class="btn btn-success pull-right">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer"> This is standard panel footer </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <footer class="footer">
-        <span class="pull-right"> Example text </span> Company 2015-2020 </footer>
+        <span class="pull-right"> Example text </span> Company 2015-2020
+    </footer>
 </div>

@@ -12,6 +12,7 @@ import { Resume2Component } from './resume-2/resume-2.component';
 import { ResumeBaseComponent } from './resume-base/resume-base.component';
 import { HomeRouteComponent } from './home-route/home-route.component';
 import { ResumeRouteComponent } from './resume-route/resume-route.component';
+import { Resume3Component } from './resume-3/resume-3.component';
 
 const appRoutes: Routes = [
   {
@@ -19,7 +20,7 @@ const appRoutes: Routes = [
     component: HomeRouteComponent,
   },
   {
-    path: 'resume/:id',
+    path: ':id',
     component: ResumeRouteComponent,
   },
 ];
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
     ResumeBaseComponent,
     HomeRouteComponent,
     ResumeRouteComponent,
+    Resume3Component,
   ],
   imports: [
     BrowserModule,

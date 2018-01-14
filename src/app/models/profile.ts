@@ -11,6 +11,7 @@ export class Profile {
         public emailAddress: string,
         public firstName: string,
         public googlePlusLink: string,
+        public id: string,
         public image: string,
         public lastName: string,
         public linkedInLink: string,
@@ -18,6 +19,7 @@ export class Profile {
         public portfolio: PortfolioItem[],
         public skills: Skill[],
         public twitterLink: string,
+        public type: string,
         public website: string,
         public workExperiences: WorkExperience[],
     ) {

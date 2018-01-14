@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="/assets/resume-3/css/styles.css">
+
+<div class="container">
+   <div class="row">
+      <div class="col-xs-12 col-sm-4 col-md-3 resume-profile">
+         <img width="250" src="{{ profile == null? 'http://via.placeholder.com/350x350' : (profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml) }}" class="img-thumbnail" alt="Your Name"> 
+         <h1> {{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }} <small class="text-muted"> {{ profile == null? '' : (profile.workExperiences.length > 0? profile.workExperiences[0].position : '') }} </small> </h1>
+         <ul class="list-unstyled">
+            <li>Email: <a href="mailto: {{ profile == null? '' : profile.emailAddress }}">{{ profile == null? '' : profile.emailAddress }}</a></li>
+            <li>Website: <a href="{{ profile == null? '' : profile.website }}">{{ profile == null? '' : profile.website }}</a></li>
+            <li>Tel: <a href="tel: {{ profile.contactNumber }}">{{ profile == null? '' : profile.contactNumber }}</a></li>
+         </ul>
+         <ul class="list-unstyled">
+            <li *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)"><a href="{{ profile.linkedInLink }}" target="_blank">Go to LinkedIn</a> </li>
+            <li *ngIf="profile == null? false : (profile.googlePlusLink == null? false : profile.googlePlusLink)"><a href="{{profile.googlePlusLink}}" target="_blank">Go to Google+</a> </li>
+            <li *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)"><a href="{{profile.twitterLink}}" target="_blank">Go to Twitter</a> </li>
+         </ul>
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-6 resume-info">
+         <section class="resume-info-section">
+            <h2 id="about">About</h2>
+            <p class="lead text-justify"> {{ profile.about }} </p>
+         </section>
+         <section class="resume-info-section">
+            <h2 id="education">Education</h2>
+            <div *ngFor="let education of profile.education" class="resume-info-section-block">
+               <h4> {{ education.qualification }} <small>- {{ education.institutionName }} </small> </h4>
+               <p> <small> {{ education.from | date: 'yyyy' }} → {{ education.to == null? 'Present' : education.to | date: 'yyyy'
+                }} </small> </p>
+               <p> {{ education.description }} </p>
+            </div>
+         </section>
+         <section class="resume-info-section">
+            <h2 id="experience">Experience</h2>
+            <div *ngFor="let workExperience of profile.workExperiences" class="resume-info-section-block">
+               <h4 id="experience-web-designer-and-trainee-web-developer"> {{ workExperience.position }} <small> – {{ workExperience.companyName }}</small> </h4>
+               <p> <small> {{ workExperience.from | date: 'MMMM yyyy' }} → {{ workExperience.currentlyEmployed? 'Present' : workExperience.to
+                  | date: 'MMMM yyyy' }} </small> </p>
+               <p> {{ workExperience.description }} </p>
+            </div>
+         </section>
+         <section class="resume-info-section">
+            <h2 id="skills">Skills</h2>
+            <ul class="list-unstyled skill-list">
+               <li *ngFor="let skill of profile.skills" >
+                  {{ skill.name }}
+                  <div class="progress">
+                     <div class="progress-bar progress-bar-info" [style.width]="skill.level == 'Novice'? '25%' : (skill.level == 'Intermediate'? '50%' : (skill.level == 'Advanced'? '75%' : (skill.level == 'Superior'? '100%' : '0%')))"></div>
+                  </div>
+               </li>
+            </ul>
+         </section>
+         <section class="resume-info-section">
+            <h2 id="portfolio">Portfolio</h2>
+            <div *ngFor="let item of profile.portfolio" class="resume-info-section-block">
+               <div class="media">
+                  <div class="media-left"> <a href="{{ item.link }}"> <img alt="Project image" class="media-object" src="{{ item.image }}"> </a> </div>
+                  <div class="media-body">
+                     <h3 class="media-heading">{{ item.name }}</h3>
+                     <p> {{ item.description }} </p>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+      <div class="col-md-3">
+         <ul class="nav nav nav-pills nav-stacked resume-navigation hidden-print hidden-sm hidden-xs" data-spy="affix" data-offset-top="0">
+            <li> <a href="/{{profile.id}}#about">Introduction</a> </li>
+            <li> <a href="/{{profile.id}}#education">Education</a> </li>
+            <li> <a href="/{{profile.id}}#experience">Experience</a> </li>
+            <li> <a href="/{{profile.id}}#skills">Skills</a> </li>
+            <li> <a href="/{{profile.id}}#portfolio">Porfolio</a> </li>
+         </ul>
+      </div>
+   </div>
+</div>
