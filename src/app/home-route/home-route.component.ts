@@ -26,6 +26,8 @@ export class HomeRouteComponent implements OnInit {
   public profile: Profile = new Profile(
     null,
     null,
+    null,
+    null,
     [],
     null,
     null,

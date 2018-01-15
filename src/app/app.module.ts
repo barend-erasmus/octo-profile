@@ -13,6 +13,9 @@ import { ResumeBaseComponent } from './resume-base/resume-base.component';
 import { HomeRouteComponent } from './home-route/home-route.component';
 import { ResumeRouteComponent } from './resume-route/resume-route.component';
 import { Resume3Component } from './resume-3/resume-3.component';
+import { Resume4Component } from './resume-4/resume-4.component';
+import { Resume5Component } from './resume-5/resume-5.component';
+import { LineBreakPipe } from './line-break.pipe';
 
 const appRoutes: Routes = [
   {
@@ -35,6 +38,9 @@ const appRoutes: Routes = [
     HomeRouteComponent,
     ResumeRouteComponent,
     Resume3Component,
+    Resume4Component,
+    Resume5Component,
+    LineBreakPipe,
   ],
   imports: [
     BrowserModule,

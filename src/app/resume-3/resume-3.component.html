@@ -42,7 +42,7 @@
          <section class="resume-info-section">
             <h2 id="skills">Skills</h2>
             <ul class="list-unstyled skill-list">
-               <li *ngFor="let skill of profile.skills" >
+               <li *ngFor="let skill of profile.skills">
                   {{ skill.name }}
                   <div class="progress">
                      <div class="progress-bar progress-bar-info" [style.width]="skill.level == 'Novice'? '25%' : (skill.level == 'Intermediate'? '50%' : (skill.level == 'Advanced'? '75%' : (skill.level == 'Superior'? '100%' : '0%')))"></div>

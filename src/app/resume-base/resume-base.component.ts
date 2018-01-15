@@ -14,7 +14,7 @@ import { PortfolioItem } from '../models/portfolio-item';
 })
 export class ResumeBaseComponent implements OnInit {
 
-  
+
   @Input()
   public profile: Profile = null;
 
@@ -23,6 +23,6 @@ export class ResumeBaseComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    
+
   }
 }

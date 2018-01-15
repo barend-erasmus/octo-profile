@@ -1,0 +1,166 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/resume-5/css/styles.css">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand page-scroll" href="#top">Octo Profile</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right quick-links">
+        <li *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)">
+          <a href="{{ profile.linkedInLink }}" target="_blank">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)">
+          <a href="{{ profile.twitterLink }}" target="_blank">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li *ngIf="profile == null? false : (profile.googlePlusLink == null? false : profile.googlePlusLink)">
+          <a href="{{ profile.googlePlusLink }}" target="_blank">
+            <i class="fa fa-google-plus"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section class="global-info">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="avatar">
+          <img src="{{ profile == null? 'http://via.placeholder.com/350x350' : (profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml) }}"
+            alt="" class="img-responsive">
+        </div>
+        <div class="name-jobtitle">
+          <h2 class="title">
+            <small>{{ profile == null? '' : (profile.workExperiences.length > 0? profile.workExperiences[0].position : '') }}</small>{{
+            profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</h2>
+        </div>
+      </div>
+      <div class="col-md-7 hidden-sm hidden-xs">
+        <div class="address-contact">
+          <div class="address">
+            <span>Address</span>
+            <p [innerHTML]="profile.address | lineBreak: 4"></p>
+          </div>
+          <div class="contact">
+            <span>Contact</span>
+            <p>
+              {{ profile.emailAddress }}
+              <br/> {{ profile.contactNumber }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="resume-container">
+  <section id="about-me" class="resume-section">
+    <article class="container">
+      <div class="row">
+        <div class="category-title col-md-12">
+          <div class="row">
+            <div class="col-md-4">
+              <h2>About Me</h2>
+            </div>
+          </div>
+        </div>
+        <div class="card-container">
+          <span class="col-md-3 col-md-offset-1 side-note">{{ profile.birthDate | date: 'MMM. dd, yyyy' }}</span>
+          <div class="col-md-6 resume-card">
+            <h3 class="title">I’m {{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}, nice to meet
+              you.
+            </h3>
+            <p>{{ profile.about }}</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+  <section id="work-experience" class="resume-section">
+    <article class="container">
+      <div class="row">
+        <div class="category-title col-md-12">
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Work Experience</h2>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let workExperience of profile.workExperiences" class="card-container">
+          <span class="col-md-3 col-md-offset-1 side-note">{{ workExperience.from | date: 'MMMM yyyy' }} - {{ workExperience.currentlyEmployed? 'Present' : workExperience.to
+            | date: 'MMMM yyyy' }}</span>
+          <div class="col-md-6 resume-card">
+            <h3 class="title">{{ workExperience.position }}
+              <small>{{ workExperience.companyName }}</small>
+            </h3>
+            <p>{{ workExperience.description }}</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+  <section id="education" class="resume-section">
+    <article class="container">
+      <div class="row">
+        <div class="category-title col-md-12">
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Education</h2>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let education of profile.education" class="card-container">
+          <span class="col-md-3 col-md-offset-1 side-note">{{ education.from | date: 'yyyy' }} - {{ education.to == null? 'Present' : education.to | date: 'yyyy' }}
+          </span>
+          <div class="col-md-6 resume-card">
+            <h3 class="title">{{ education.institutionName }}
+              <small>{{ education.qualification }}</small>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+  <section id="skills" class="resume-section">
+    <article class="container">
+      <div class="row">
+        <div class="category-title col-md-12">
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Skills</h2>
+            </div>
+          </div>
+        </div>
+        <div class="card-container">
+          <span class="col-md-3 col-md-offset-1 side-note hidden-print"></span>
+          <div class="col-md-6 resume-card">
+            <div *ngFor="let skill of profile.skills" class="skill">
+              <h4 class="title">{{ skill.name }}</h4>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" [style.width]="skill.level == 'Novice'? '25%' : (skill.level == 'Intermediate'? '50%' : (skill.level == 'Advanced'? '75%' : (skill.level == 'Superior'? '100%' : '0%')))">
+                  <span class="sr-only">{{ skill.level }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</div>
+<footer class="text-center">
+  <p>© Octo Profile</p>
+</footer>

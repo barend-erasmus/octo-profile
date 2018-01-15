@@ -4,11 +4,11 @@ import { ProfileService } from '../profile.service';
 import { ResumeBaseComponent } from '../resume-base/resume-base.component';
 
 @Component({
-  selector: 'app-resume-3',
-  templateUrl: './resume-3.component.html',
-  styleUrls: ['./resume-3.component.css']
+  selector: 'app-resume-5',
+  templateUrl: './resume-5.component.html',
+  styleUrls: ['./resume-5.component.css']
 })
-export class Resume3Component extends ResumeBaseComponent implements OnInit {
+export class Resume5Component extends ResumeBaseComponent implements OnInit {
 
   constructor() {
     super();

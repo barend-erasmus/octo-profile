@@ -1,0 +1,213 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/resume-4/css/styles.css">
+
+<div id="wrapper">
+  <div id="sidebar-wrapper" style="background-image: url('/assets/resume-4/images/sidebar-nav-bg.jpg')">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#">
+          <img src="{{profile.image}}" alt="">
+        </a>
+      </li>
+      <li>
+        <a class="menu-item page-scroll" href="/{{profile.id}}#home">Home</a>
+      </li>
+      <li>
+        <a class="menu-item page-scroll" href="/{{profile.id}}#about">About</a>
+      </li>
+      <li>
+        <a class="menu-item page-scroll" href="/{{profile.id}}#education">Education</a>
+      </li>
+      <li>
+        <a class="menu-item page-scroll" href="/{{profile.id}}#experience">Experience</a>
+      </li>
+      <li>
+        <a class="menu-item page-scroll" href="/{{profile.id}}#portfolio">Portfolio</a>
+      </li>
+    </ul>
+  </div>
+  <div id="page-content-wrapper" class="header">
+    <div class="container-fluid">
+      <div id="top" data-toggle="top"></div>
+      <a href="#menu-toggle" id="menu-toggle">
+        <i class="lnr lnr-menu"></i>
+      </a>
+      <header id="home" style="background-image: url('/assets/resume-4/images/header-bg.jpg')">
+        <div class="header-content">
+          <h2>Hello
+            <span class="text-primary">.</span> I am
+            <span class="text-primary">{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</span>
+          </h2>
+          <h5>{{ profile == null? '' : (profile.workExperiences.length > 0? profile.workExperiences[0].position : '') }}</h5>
+          <p>{{ profile.about }}</p>
+        </div>
+      </header>
+      <section id="about">
+        <div class="container">
+          <div class="page-header space-left">
+            <h3>About
+              <span class="text-primary">.</span>
+            </h3>
+          </div>
+          <div class="row">
+            <div class="col-md-4 feature-left space-bottom">
+              <div class="feature block">
+                <div class="feature-icon">
+                  <i class="fa fa-user"></i>
+                </div>
+                <h5>Full Name</h5>
+              </div>
+              <p>{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</p>
+            </div>
+            <div class="col-md-4 feature-left space-bottom">
+              <div class="feature block">
+                <div class="feature-icon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <h5>Bithdate</h5>
+              </div>
+              <p>{{ profile.birthDate | date: 'MMM. dd, yyyy' }}</p>
+            </div>
+            <div class="col-md-4 feature-left space-bottom">
+              <div class="feature block">
+                <div class="feature-icon">
+                  <i class="fa fa-map-marker"></i>
+                </div>
+                <h5>Address</h5>
+              </div>
+              <p>{{ profile.address }}</p>
+            </div>
+            <div class="col-md-4 feature-left space-bottom">
+              <div class="feature block">
+                <div class="feature-icon">
+                  <i class="fa fa-send"></i>
+                </div>
+                <h5>Email Address</h5>
+              </div>
+              <p>{{ profile.emailAddress }}</p>
+            </div>
+            <div class="col-md-4 feature-left space-bottom">
+              <div class="feature block">
+                <div class="feature-icon">
+                  <i class="fa fa-mobile"></i>
+                </div>
+                <h5>Contact Number</h5>
+              </div>
+              <p>{{ profile.contactNumber }}</p>
+            </div>
+            <div class="col-md-4 feature-left space-bottom">
+              <div class="feature block">
+                <div class="feature-icon">
+                  <i class="fa fa-linkedin"></i>
+                </div>
+                <h5>LinkedIn Profile</h5>
+              </div>
+              <p><a href="{{ profile.linkedInLink }}">{{ profile.linkedInLink }}</a></p>
+            </div>
+          </div>
+          <div id="skills">
+            <div class="page-header space-left">
+              <h3>Skills
+                <span class="text-primary">.</span>
+              </h3>
+            </div>
+            <div class="row">
+              <div *ngFor="let skill of profile.skills" class="col-sm-6">
+                <h6 class="progress-title">{{ skill.name }}</h6>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-primary animated fadeInLeft" [style.width]="skill.level == 'Novice'? '25%' : (skill.level == 'Intermediate'? '50%' : (skill.level == 'Advanced'? '75%' : (skill.level == 'Superior'? '100%' : '0%')))">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="education">
+        <div class="container">
+          <div class="page-header">
+            <h3>Education
+              <span class="text-primary">.</span>
+            </h3>
+          </div>
+          <div class="timeline border-color">
+            <div *ngFor="let education of profile.education" class="timeline-item">
+              <div class="timeline-point off-timeline-point point-color"></div>
+              <div class="row">
+                <div class="col-md-3 timeline-info">
+                  <p class="timeline-date">{{ education.from | date: 'yyyy' }} - {{ education.to == null? 'Present' : education.to | date: 'yyyy'
+                    }}
+                  </p>
+                  <h4 class="timeline-com">{{ education.institutionName }}</h4>
+                  <h6 class="timeline-role">{{ education.qualification }}</h6>
+                </div>
+                <div class="col-md-9 timeline-details">
+                  <p> {{ education.description }} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="experience">
+        <div class="container">
+          <div class="page-header">
+            <h3>Experience
+              <span class="text-primary">.</span>
+            </h3>
+          </div>
+          <div class="timeline border-color">
+            <div *ngFor="let workExperience of profile.workExperiences" class="timeline-item">
+              <div class="timeline-point off-timeline-point point-color"></div>
+              <div class="row">
+                <div class="col-md-3 timeline-info">
+                  <p class="timeline-date">{{ workExperience.from | date: 'MMMM yyyy' }} - {{ workExperience.currentlyEmployed? 'Present' : workExperience.to
+                    | date: 'MMMM yyyy' }}</p>
+                  <h4 class="timeline-com">{{ workExperience.companyName }}</h4>
+                  <h6 class="timeline-role">{{ workExperience.position }}</h6>
+                  <p class="timeline-location">{{ workExperience.location }}</p>
+                </div>
+                <div class="col-md-9 timeline-details">
+                  <p> {{ workExperience.description }} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="portfolio">
+        <div class="container">
+          <div class="page-header space-left">
+            <h3>Portfolio
+              <span class="text-primary">.</span>
+            </h3>
+          </div>
+          <ul class="row portfolio list-unstyled" id="grid">
+            <li  *ngFor="let item of profile.portfolio" class="col-xs-6 col-md-4 project">
+              <figure>
+                <div class="hovereffect">
+                  <img class="img-responsive" src="{{ item.image }}" alt="">
+                  <a href="{{ item.link == null? '#' : item.link }}">
+                    <div class="overlay">
+                      <div class="hovereffect-title">
+                        <h6>{{ item.name }}</h6>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </figure>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <footer>
+        <div class="container">
+          <p class="footer-info">©
+            <a href="https://developersworkspace.co.za" target="_blank">Octo Profile</a>
+          </p>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
