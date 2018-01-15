@@ -303,7 +303,7 @@ export class Profile {
                 ),
             ],
             null,
-            'resume-5',
+            'resume-4',
             'https://developersworkspace.co.za',
             [
                 new WorkExperience(
