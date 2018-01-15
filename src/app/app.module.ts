@@ -16,8 +16,13 @@ import { Resume3Component } from './resume-3/resume-3.component';
 import { Resume4Component } from './resume-4/resume-4.component';
 import { Resume5Component } from './resume-5/resume-5.component';
 import { LineBreakPipe } from './line-break.pipe';
+import { CorporateRouteComponent } from './corporate-route/corporate-route.component';
 
 const appRoutes: Routes = [
+  {
+    path: '',
+    component: CorporateRouteComponent,
+  },
   {
     path: 'admin/home',
     component: HomeRouteComponent,
@@ -41,6 +46,7 @@ const appRoutes: Routes = [
     Resume4Component,
     Resume5Component,
     LineBreakPipe,
+    CorporateRouteComponent,
   ],
   imports: [
     BrowserModule,
