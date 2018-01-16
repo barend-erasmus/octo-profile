@@ -14,7 +14,7 @@ export class LoginRouteComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-  ) { 
+  ) {
 
   }
 

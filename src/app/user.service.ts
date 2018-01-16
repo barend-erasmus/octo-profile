@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(
     private serviceGateway: ServiceGatewayService,
-  ) { 
+  ) {
 
   }
 

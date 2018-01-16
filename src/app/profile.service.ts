@@ -13,7 +13,7 @@ export class ProfileService {
 
   constructor(
     private serviceGateway: ServiceGatewayService,
-  ) { 
+  ) {
 
   }
 

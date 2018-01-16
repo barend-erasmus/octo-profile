@@ -60,7 +60,7 @@ export class HomeRouteComponent implements OnInit {
         this.profile = null;
       }
     }, (err) => {
-      this.profile= null;
+      this.profile = null;
     });
   }
 
@@ -155,7 +155,7 @@ export class HomeRouteComponent implements OnInit {
         [],
         null,
         null,
-        null, 
+        null,
         this.newId,
         null,
         null,

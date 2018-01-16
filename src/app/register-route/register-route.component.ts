@@ -14,7 +14,7 @@ export class RegisterRouteComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-  ) { 
+  ) {
 
   }
 
@@ -23,9 +23,9 @@ export class RegisterRouteComponent implements OnInit {
   }
 
   public onClick_Register(): void {
-    this.userService.create(this.username, this.password).subscribe((result) => {
-      this.userService.authenticate(this.username, this.password).subscribe((result) => {
-        localStorage.setItem('token', result.token);
+    this.userService.create(this.username, this.password).subscribe((resultCreate) => {
+      this.userService.authenticate(this.username, this.password).subscribe((resultAuthenticate) => {
+        localStorage.setItem('token', resultAuthenticate.token);
         window.location.href = '/admin/home';
       });
     }, (err) => {

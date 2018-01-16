@@ -19,7 +19,7 @@ export class ServiceGatewayService {
         const headers = new HttpHeaders()
         .set('authorization', `Bearer ${token}`);
 
-        const queryString = params? Object.keys(params).map((key) => `${key}=${params[key]}`).join('&') : '';
+        const queryString = params ? Object.keys(params).map((key) => `${key}=${params[key]}`).join('&') : '';
         return this.http.get<T>(`${this.baseUri}${uri}?${queryString}`, {
             headers,
         });
