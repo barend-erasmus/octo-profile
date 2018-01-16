@@ -80,7 +80,7 @@ export class HomeRouteComponent implements OnInit {
       };
 
       event.target.value = '';
-      
+
     }
   }
 

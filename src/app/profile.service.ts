@@ -19,21 +19,21 @@ export class ProfileService {
   }
 
   public create(profile: Profile): Observable<Profile> {
-    return this.serviceGateway.post<Profile>('/api/profile', profile).map((profile: Profile) => {
+    return this.serviceGateway.post<Profile>('/api/profile', profile).map((profileMap: Profile) => {
 
-      profile.education.forEach((education: Education) => {
+      profileMap.education.forEach((education: Education) => {
         education.to = education.to ? new Date(education.to) : null;
         education.from = education.from ? new Date(education.from) : null;
       });
 
-      profile.workExperiences.forEach((workExperience: WorkExperience) => {
+      profileMap.workExperiences.forEach((workExperience: WorkExperience) => {
         workExperience.to = workExperience.to ? new Date(workExperience.to) : null;
         workExperience.from = workExperience.from ? new Date(workExperience.from) : null;
       });
 
-      profile.birthDate = profile.birthDate ? new Date(profile.birthDate) : null;
+      profileMap.birthDate = profileMap.birthDate ? new Date(profileMap.birthDate) : null;
 
-      return profile;
+      return profileMap;
     });
   }
 
@@ -66,12 +66,12 @@ export class ProfileService {
           education.to = education.to ? new Date(education.to) : null;
           education.from = education.from ? new Date(education.from) : null;
         });
-  
+
         profile.workExperiences.forEach((workExperience: WorkExperience) => {
           workExperience.to = workExperience.to ? new Date(workExperience.to) : null;
           workExperience.from = workExperience.from ? new Date(workExperience.from) : null;
         });
-  
+
         profile.birthDate = profile.birthDate ? new Date(profile.birthDate) : null;
       });
 
@@ -80,21 +80,21 @@ export class ProfileService {
   }
 
   public update(profile: Profile): Observable<Profile> {
-    return this.serviceGateway.put<any>('/api/profile', profile).map((profile: Profile) => {
+    return this.serviceGateway.put<any>('/api/profile', profile).map((profileMap: Profile) => {
 
-      profile.education.forEach((education: Education) => {
+      profileMap.education.forEach((education: Education) => {
         education.to = education.to ? new Date(education.to) : null;
         education.from = education.from ? new Date(education.from) : null;
       });
 
-      profile.workExperiences.forEach((workExperience: WorkExperience) => {
+      profileMap.workExperiences.forEach((workExperience: WorkExperience) => {
         workExperience.to = workExperience.to ? new Date(workExperience.to) : null;
         workExperience.from = workExperience.from ? new Date(workExperience.from) : null;
       });
 
-      profile.birthDate = profile.birthDate ? new Date(profile.birthDate) : null;
+      profileMap.birthDate = profileMap.birthDate ? new Date(profileMap.birthDate) : null;
 
-      return profile;
+      return profileMap;
     });
   }
 
