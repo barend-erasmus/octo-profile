@@ -22,6 +22,7 @@ export class Profile {
         public skills: Skill[],
         public twitterLink: string,
         public type: string,
+        public username: string,
         public website: string,
         public workExperiences: WorkExperience[],
     ) {
@@ -304,6 +305,7 @@ export class Profile {
             ],
             null,
             'resume-4',
+            'barend-erasmus',
             'https://developersworkspace.co.za',
             [
                 new WorkExperience(
@@ -375,6 +377,7 @@ export class Profile {
             ],
             null,
             'resume-4',
+            'marla-tarrant',
             null,
             [
                 new WorkExperience(

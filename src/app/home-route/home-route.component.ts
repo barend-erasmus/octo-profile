@@ -42,6 +42,7 @@ export class HomeRouteComponent implements OnInit {
     null,
     null,
     null,
+    null,
     [],
   );
 
