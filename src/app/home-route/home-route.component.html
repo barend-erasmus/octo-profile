@@ -24,7 +24,7 @@
         <div class="navbar-right">
             <ul class="nav navbar-nav no-borders">
                 <li>
-                    <a>
+                    <a (click)="onClick_Logout()">
                         <i class="fa fa-sign-out"></i>
                     </a>
                 </li>
@@ -36,9 +36,10 @@
     <div id="navigation">
         <div class="profile-picture">
             <a href="/admin/home">
-                <img src="http://via.placeholder.com/50x50" class="img-circle m-b" alt="logo"> </a>
+                <img src="{{ profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml }}" style="width: 50px"
+                    class="img-circle m-b" alt="logo"> </a>
             <div class="stats-label text-color">
-                <span class="font-extra-bold font-uppercase">Robert Razer</span>
+                <span class="font-extra-bold font-uppercase">{{ profile.firstName }} {{ profile.lastName }}</span>
             </div>
         </div>
         <ul class="nav" id="side-menu">
@@ -76,7 +77,6 @@
                             <button (click)="onClick_SaveNewId()" class="btn btn-success pull-right">Save</button>
                         </div>
                     </div>
-                    <div class="panel-footer"> This is standard panel footer </div>
                 </div>
             </div>
         </div>
@@ -89,58 +89,67 @@
                     <div class="panel-body text-center">
                         <div class="row">
                             <div class="form-group col-lg-12">
+                                <img src="{{ profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml }}" style="width: 75px"
+                                />
                                 <button (click)="onClick_Image()" class="btn btn-primary">Upload Image</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label>First Name</label>
-                                <input [(ngModel)]="profile.firstName" type="text" class="form-control" placeholder="Enter first name here" />
+                                <input [(ngModel)]="profile.firstName" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter first name here"
+                                />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Last Name</label>
-                                <input [(ngModel)]="profile.lastName" type="text" class="form-control" placeholder="Enter last name here" />
+                                <input [(ngModel)]="profile.lastName" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter last name here"
+                                />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Google+ Link</label>
-                                <input [(ngModel)]="profile.googlePlusLink" type="text" class="form-control" placeholder="Enter Google+ link here" />
+                                <input [(ngModel)]="profile.googlePlusLink" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter Google+ link here"
+                                />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>LinkedIn Link</label>
-                                <input [(ngModel)]="profile.linkedInLink" type="text" class="form-control" placeholder="Enter LinkedIn link here" />
+                                <input [(ngModel)]="profile.linkedInLink" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter LinkedIn link here"
+                                />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Twitter Link</label>
-                                <input [(ngModel)]="profile.twitterLink" type="text" class="form-control" placeholder="Enter Twitter link here" />
+                                <input [(ngModel)]="profile.twitterLink" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter Twitter link here"
+                                />
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <label>Email Address</label>
-                                <input [(ngModel)]="profile.emailAddress" type="text" class="form-control" placeholder="Enter email address here" />
+                                <input [(ngModel)]="profile.emailAddress" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter email address here"
+                                />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Contact Number</label>
-                                <input [(ngModel)]="profile.contactNumber" type="text" class="form-control" placeholder="Enter contact number here" />
+                                <input [(ngModel)]="profile.contactNumber" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter contact number here"
+                                />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Website</label>
-                                <input [(ngModel)]="profile.website" type="text" class="form-control" placeholder="Enter website here" />
+                                <input [(ngModel)]="profile.website" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter website here"
+                                />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <textarea [(ngModel)]="profile.about" type="text" class="form-control" rows="5" placeholder="Enter about here"></textarea>
+                                <textarea [(ngModel)]="profile.about" (blur)="onClick_Save()" type="text" class="form-control" rows="5" placeholder="Enter about here"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-12">
                                 <label>Message</label>
-                                <textarea [(ngModel)]="profile.message " type="text" class="form-control" rows="5" placeholder="Enter message here"></textarea>
+                                <textarea [(ngModel)]="profile.message" (blur)="onClick_Save()" type="text" class="form-control" rows="5" placeholder="Enter message here"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer"> This is standard panel footer </div>
                 </div>
             </div>
         </div>
@@ -154,30 +163,33 @@
                         <div *ngFor="let workExperience of profile.workExperiences" class="row well">
                             <div class="form-group col-lg-4">
                                 <label>Company Name</label>
-                                <input [(ngModel)]="workExperience.companyName" type="text" class="form-control" placeholder="Enter company name here" />
+                                <input [(ngModel)]="workExperience.companyName" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter company name here"
+                                />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Location</label>
-                                <input [(ngModel)]="workExperience.location" type="text" class="form-control" placeholder="Enter location here" />
+                                <input [(ngModel)]="workExperience.location" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter location here"
+                                />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Position</label>
-                                <input [(ngModel)]="workExperience.position" type="text" class="form-control" placeholder="Enter position here" />
+                                <input [(ngModel)]="workExperience.position" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter position here"
+                                />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Date of Employment</label>
-                                <input bsDatepicker [(bsValue)]="workExperience.from" #dp="bsDatepicker" type="text" class="form-control">
+                                <input bsDatepicker [(bsValue)]="workExperience.from" (blur)="onClick_Save()" #dp="bsDatepicker" type="text" class="form-control">
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Date of Termination</label>
-                                <input [disabled]="workExperience.currentlyEmployed" bsDatepicker [(bsValue)]="workExperience.to" #dp="bsDatepicker" type="text"
-                                    class="form-control">
-                                <input [(ngModel)]="workExperience.currentlyEmployed" type="checkbox" id="currentlyEmployed">
+                                <input [disabled]="workExperience.currentlyEmployed" (blur)="onClick_Save()" bsDatepicker [(bsValue)]="workExperience.to"
+                                    #dp="bsDatepicker" type="text" class="form-control">
+                                <input [(ngModel)]="workExperience.currentlyEmployed" (change)="onClick_Save()" type="checkbox" id="currentlyEmployed">
                                 <label class="form-check-label" for="currentlyEmployed">Currently employed</label>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label>Description</label>
-                                <textarea [(ngModel)]="workExperience.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                                <textarea [(ngModel)]="workExperience.description" (blur)="onClick_Save()" type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
                             </div>
 
                         </div>
@@ -211,11 +223,10 @@
                                 <textarea [(ngModel)]="newWorkExperience.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
                             </div>
                             <div class="form-group col-lg-12">
-                                <button (click)="onClick_AddWorkExperience()" class="btn btn-success pull-right">Save</button>
+                                <button (click)="onClick_AddWorkExperience()" class="btn btn-success pull-right">Add</button>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer"> This is standard panel footer </div>
                 </div>
             </div>
         </div>
@@ -229,24 +240,25 @@
                         <div *ngFor="let education of profile.education" class="row well">
                             <div class="form-group col-lg-6">
                                 <label>Institution Name</label>
-                                <input [(ngModel)]="education.institutionName" type="text" class="form-control" placeholder="Enter institution name here"
+                                <input [(ngModel)]="education.institutionName" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter institution name here"
                                 />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Qualification</label>
-                                <input [(ngModel)]="education.qualification" type="text" class="form-control" placeholder="Enter qualification here" />
+                                <input [(ngModel)]="education.qualification" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter qualification here"
+                                />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Start Date</label>
-                                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="education.from">
+                                <input type="text" class="form-control" (blur)="onClick_Save()" #dp="bsDatepicker" bsDatepicker [(bsValue)]="education.from">
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>End Date</label>
-                                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="education.to">
+                                <input type="text" class="form-control" (blur)="onClick_Save()" #dp="bsDatepicker" bsDatepicker [(bsValue)]="education.to">
                             </div>
                             <div class="form-group col-lg-12">
                                 <label>Description</label>
-                                <textarea [(ngModel)]="education.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                                <textarea [(ngModel)]="education.description" (blur)="onClick_Save()" type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
                             </div>
                         </div>
                         <div class="row well">
@@ -272,11 +284,10 @@
                                 <textarea [(ngModel)]="newEducation.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
                             </div>
                             <div class="form-group col-lg-12">
-                                <button (click)="onClick_AddEducation()" class="btn btn-success pull-right">Save</button>
+                                <button (click)="onClick_AddEducation()" class="btn btn-success pull-right">Add</button>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer"> This is standard panel footer </div>
                 </div>
             </div>
         </div>
@@ -290,11 +301,11 @@
                         <div *ngFor="let skill of profile.skills" class="row well">
                             <div class="form-group col-lg-4">
                                 <label>Name</label>
-                                <input [(ngModel)]="skill.name" type="text" class="form-control" placeholder="Enter name here" />
+                                <input [(ngModel)]="skill.name" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter name here" />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Level</label>
-                                <select [(ngModel)]="skill.level" class="form-control">
+                                <select [(ngModel)]="skill.level" (change)="onClick_Save()" class="form-control">
                                     <option [ngValue]="'Novice'">Novice</option>
                                     <option [ngValue]="'Intermediate'">Intermediate</option>
                                     <option [ngValue]="'Advanced'">Advanced</option>
@@ -303,11 +314,12 @@
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Years</label>
-                                <input [(ngModel)]="skill.years" type="number" class="form-control" placeholder="Enter years here" />
+                                <input [(ngModel)]="skill.years" (blur)="onClick_Save()" type="number" class="form-control" placeholder="Enter years here"
+                                />
                             </div>
                             <div class="form-group col-lg-12">
                                 <label>Description</label>
-                                <textarea [(ngModel)]="skill.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                                <textarea [(ngModel)]="skill.description" (blur)="onClick_Save()" type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
                             </div>
                         </div>
                         <div class="row well">
@@ -333,11 +345,10 @@
                                 <textarea [(ngModel)]="newSkill.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
                             </div>
                             <div class="form-group col-lg-12">
-                                <button (click)="onClick_AddSkill()" class="btn btn-success pull-right">Save</button>
+                                <button (click)="onClick_AddSkill()" class="btn btn-success pull-right">Add</button>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer"> This is standard panel footer </div>
                 </div>
             </div>
         </div>
@@ -351,11 +362,11 @@
                         <div *ngFor="let item of profile.portfolio" class="row well">
                             <div class="form-group col-lg-6">
                                 <label>Name</label>
-                                <input [(ngModel)]="item.name" type="text" class="form-control" placeholder="Enter name here" />
+                                <input [(ngModel)]="item.name" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter name here" />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Link</label>
-                                <input [(ngModel)]="item.link" type="text" class="form-control" placeholder="Enter link here" />
+                                <input [(ngModel)]="item.link" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter link here" />
                             </div>
                             <div class="form-group col-lg-12">
                                 <img class="img" src="{{ item.image }}" alt="" width="75" />
@@ -363,7 +374,7 @@
                             </div>
                             <div class="form-group col-lg-12">
                                 <label>Description</label>
-                                <textarea [(ngModel)]="item.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
+                                <textarea [(ngModel)]="item.description" (blur)="onClick_Save()" type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
                             </div>
                         </div>
                         <div class="row well">
@@ -384,16 +395,15 @@
                                 <textarea [(ngModel)]="newPortfolioItem.description " type="text" class="form-control" rows="5" placeholder="Enter description here"></textarea>
                             </div>
                             <div class="form-group col-lg-12">
-                                <button (click)="onClick_AddPortfolioItem()" class="btn btn-success pull-right">Save</button>
+                                <button (click)="onClick_AddPortfolioItem()" class="btn btn-success pull-right">Add</button>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer"> This is standard panel footer </div>
                 </div>
             </div>
         </div>
     </div>
     <footer class="footer">
-        <span class="pull-right"> Example text </span> Company 2015-2020
+        <span> Octo Profile 2018 </span>
     </footer>
 </div>

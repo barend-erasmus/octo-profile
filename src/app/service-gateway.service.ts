@@ -35,4 +35,15 @@ export class ServiceGatewayService {
             headers,
         });
     }
+
+    public put<T>(uri: string, json: any): Observable<T> {
+        const token = localStorage.getItem('token');
+
+        const headers = new HttpHeaders()
+        .set('authorization', `Bearer ${token}`);
+
+        return this.http.put<T>(`${this.baseUri}${uri}`, json, {
+            headers,
+        });
+    }
 }

@@ -13,8 +13,6 @@ import { Profile } from '../models/profile';
 })
 export class HomeRouteComponent implements OnInit {
 
-  public isEdit = false;
-
   public newEducation: Education = new Education(null, new Date(), null, null, new Date());
 
   public newId: string = null;
@@ -74,12 +72,15 @@ export class HomeRouteComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.profile.image = reader.result;
+
+        this.onClick_Save();
       };
       reader.onerror = (error) => {
 
       };
 
       event.target.value = '';
+      
     }
   }
 
@@ -93,6 +94,8 @@ export class HomeRouteComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.tempPortfolioItem.image = reader.result;
+
+        this.onClick_Save();
       };
       reader.onerror = (error) => {
 
@@ -105,11 +108,15 @@ export class HomeRouteComponent implements OnInit {
   public onClick_AddEducation(): void {
     this.profile.education.push(this.newEducation);
 
+    this.onClick_Save();
+
     this.newEducation = new Education(null, new Date(), null, null, new Date());
   }
 
   public onClick_AddPortfolioItem(): void {
     this.profile.portfolio.push(this.newPortfolioItem);
+
+    this.onClick_Save();
 
     this.newPortfolioItem = new PortfolioItem(null, null, null, null);
   }
@@ -117,17 +124,17 @@ export class HomeRouteComponent implements OnInit {
   public onClick_AddSkill(): void {
     this.profile.skills.push(this.newSkill);
 
+    this.onClick_Save();
+
     this.newSkill = new Skill(null, null, null, null);
   }
 
   public onClick_AddWorkExperience(): void {
     this.profile.workExperiences.push(this.newWorkExperience);
 
-    this.newWorkExperience = new WorkExperience(null, false, null, new Date(), null, null, new Date());
-  }
+    this.onClick_Save();
 
-  public onClick_Edit(): void {
-    this.isEdit = true;
+    this.newWorkExperience = new WorkExperience(null, false, null, new Date(), null, null, new Date());
   }
 
   public onClick_Image(): void {
@@ -140,9 +147,14 @@ export class HomeRouteComponent implements OnInit {
   }
 
   public onClick_Save(): void {
-    this.isEdit = false;
+    this.profileService.update(this.profile).subscribe((result) => {
+      this.profile = this.profile;
+    });
+  }
 
-    console.log(this.profile);
+  public onClick_Logout(): void {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
   }
 
   public onClick_SaveNewId(): void {
@@ -164,7 +176,7 @@ export class HomeRouteComponent implements OnInit {
         [],
         [],
         null,
-        null,
+        'resume-1',
         null,
         null,
         [],
