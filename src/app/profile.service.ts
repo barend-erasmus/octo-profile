@@ -6,24 +6,29 @@ import { Education } from './models/education';
 import { WorkExperience } from './models/work-experience';
 import { Skill } from './models/skill';
 import { PortfolioItem } from './models/portfolio-item';
+import { ServiceGatewayService } from './service-gateway.service';
 
 @Injectable()
 export class ProfileService {
 
-  constructor() {
+  constructor(
+    private serviceGateway: ServiceGatewayService,
+  ) { 
 
   }
 
-  public get(id: string): Observable<Profile> {
-    let profile: Profile = null;
+  public create(profile: Profile): Observable<Profile> {
+    return this.serviceGateway.post<any>('/api/profile', profile);
+  }
 
-    if (id === 'barend-erasmus') {
-      profile = Profile.getProfileBarendErasmus();
-    }else if (id === 'marla-tarrant') {
-      profile = Profile.getProfileMarlaTarrant();
-    }
+  public find(id: string): Observable<Profile> {
+    return this.serviceGateway.get<any>('/api/profile', {
+      id,
+    });
+  }
 
-    return Observable.of(profile);
+  public list(): Observable<Profile[]> {
+    return this.serviceGateway.get<any>('/api/profile', null);
   }
 
 }

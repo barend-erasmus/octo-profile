@@ -20,7 +20,7 @@ export class ResumeRouteComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.profileId = params['id'];
 
-      this.profileService.get(this.profileId).subscribe((profile) => {
+      this.profileService.find(this.profileId).subscribe((profile) => {
         this.profile = profile;
       });
    });

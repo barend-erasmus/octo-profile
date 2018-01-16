@@ -17,6 +17,8 @@ export class HomeRouteComponent implements OnInit {
 
   public newEducation: Education = new Education(null, new Date(), null, null, new Date());
 
+  public newId: string = null;
+
   public newPortfolioItem: PortfolioItem = new PortfolioItem(null, null, null, null);
 
   public newSkill: Skill = new Skill(null, null, null, null);
@@ -51,8 +53,14 @@ export class HomeRouteComponent implements OnInit {
   constructor(private profileService: ProfileService,  private element: ElementRef) { }
 
   public ngOnInit(): void {
-    this.profileService.get('barend-erasmus').subscribe((profile) => {
-      this.profile = profile;
+    this.profileService.list().subscribe((profiles) => {
+      if (profiles.length !== 0) {
+        this.profile = profiles[0];
+      }else {
+        this.profile = null;
+      }
+    }, (err) => {
+      this.profile= null;
     });
   }
 
@@ -135,6 +143,34 @@ export class HomeRouteComponent implements OnInit {
     this.isEdit = false;
 
     console.log(this.profile);
+  }
+
+  public onClick_SaveNewId(): void {
+
+      this.profileService.create(new Profile(
+        null,
+        null,
+        null,
+        null,
+        [],
+        null,
+        null,
+        null, 
+        this.newId,
+        null,
+        null,
+        null,
+        null,
+        [],
+        [],
+        null,
+        null,
+        null,
+        null,
+        [],
+      )).subscribe((result) => {
+        this.profile = result;
+      });
   }
 
 }
