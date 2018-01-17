@@ -304,7 +304,7 @@ export class Profile {
                 ),
             ],
             null,
-            'resume-4',
+            'resume-5',
             'barend-erasmus',
             'https://developersworkspace.co.za',
             [

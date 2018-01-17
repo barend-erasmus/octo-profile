@@ -84,6 +84,12 @@ export class HomeRouteComponent implements OnInit {
     }
   }
 
+  public onClick_ResumeTemplate(value: string): void {
+    this.profile.type = value;
+
+    this.onClick_Save();
+  }
+
   public onChange_PortfolioItemImage(event): void {
     const fileList: FileList = event.target.files;
 

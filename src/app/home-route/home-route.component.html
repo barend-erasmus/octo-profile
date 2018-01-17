@@ -84,6 +84,33 @@
             <div class="col-lg-12">
                 <div class="hpanel">
                     <div class="panel-title text-center">
+                        Template
+                    </div>
+                    <div class="panel-body text-center">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="resume-selector">
+                                    <input [checked]="profile.type == 'resume-1'" (click)="onClick_ResumeTemplate('resume-1')" id="resume-1" type="radio" name="resume-selector" />
+                                    <label class="resume-screenshot resume-1" for="resume-1"></label>
+                                    <input [checked]="profile.type == 'resume-2'" (click)="onClick_ResumeTemplate('resume-2')" id="resume-2" type="radio" name="resume-selector" />
+                                    <label class="resume-screenshot resume-2" for="resume-2"></label>
+                                    <input [checked]="profile.type == 'resume-3'" (click)="onClick_ResumeTemplate('resume-3')" id="resume-3" type="radio" name="resume-selector" />
+                                    <label class="resume-screenshot resume-3" for="resume-3"></label>
+                                    <input [checked]="profile.type == 'resume-4'" (click)="onClick_ResumeTemplate('resume-4')" id="resume-4" type="radio" name="resume-selector" />
+                                    <label class="resume-screenshot resume-4" for="resume-4"></label>
+                                    <input [checked]="profile.type == 'resume-5'" (click)="onClick_ResumeTemplate('resume-5')" id="resume-5" type="radio" name="resume-selector" />
+                                    <label class="resume-screenshot resume-5" for="resume-5"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="profile != null" class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-title text-center">
                         Details
                     </div>
                     <div class="panel-body text-center">

@@ -1,0 +1,39 @@
+.resume-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.resume-1{background-image:url(/assets/resume-1/images/screenshot.png);}
+.resume-2{background-image:url(/assets/resume-2/images/screenshot.png);}
+.resume-3{background-image:url(/assets/resume-3/images/screenshot.png);}
+.resume-4{background-image:url(/assets/resume-4/images/screenshot.png);}
+.resume-5{background-image:url(/assets/resume-5/images/screenshot.png);}
+
+.resume-selector input:active +.resume-screenshot{opacity: .9;}
+.resume-selector input:checked +.resume-screenshot{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+
+.resume-screenshot{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width: 200px;
+    height: 100px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.resume-screenshot:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
