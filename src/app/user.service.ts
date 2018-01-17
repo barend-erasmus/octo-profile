@@ -26,4 +26,8 @@ export class UserService {
     });
   }
 
+  public find(): Observable<any> {
+    return this.serviceGateway.get<any>('/api/user', null);
+  }
+
 }

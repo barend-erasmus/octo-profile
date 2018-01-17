@@ -24,6 +24,9 @@ import { HttpClient } from '@angular/common/http';
 import { ServiceGatewayService } from './service-gateway.service';
 import { UserService } from './user.service';
 import { environment } from './../environments/environment';
+import { HeaderComponent } from './header/header.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
   {
@@ -67,6 +70,9 @@ const appRoutes: Routes = [
     CorporateRouteComponent,
     LoginRouteComponent,
     RegisterRouteComponent,
+    HeaderComponent,
+    SideMenuComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
