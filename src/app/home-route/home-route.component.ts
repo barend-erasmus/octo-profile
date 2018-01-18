@@ -51,7 +51,7 @@ export class HomeRouteComponent implements OnInit {
   constructor(private profileService: ProfileService,  private element: ElementRef) { }
 
   public ngOnInit(): void {
-    this.profileService.list().subscribe((profiles) => {
+    this.profileService.list().subscribe((profiles: Profile[]) => {
       if (profiles.length !== 0) {
         this.profile = profiles[0];
       }else {
@@ -156,11 +156,6 @@ export class HomeRouteComponent implements OnInit {
     this.profileService.update(this.profile).subscribe((result) => {
       this.profile = this.profile;
     });
-  }
-
-  public onClick_Logout(): void {
-    localStorage.removeItem('token');
-    window.location.href = '/login';
   }
 
   public onClick_SaveNewId(): void {

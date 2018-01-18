@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.2/metisMenu.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/admin/css/styles.css">
+
+<app-header></app-header>
+<app-side-menu [profile]="profile"></app-side-menu>
+
+<div id="wrapper">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-12 text-center welcome-message">
+        <h2> Dashboard </h2>
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in lacus urna. Mauris tellus orci, commodo a ante
+          et, dapibus varius urna. </p>
+      </div>
+    </div>
+    <div *ngIf="usageCounts != null" class="row">
+      <div class="col-lg-12">
+        <div class="hpanel">
+          <div class="panel-title text-center">
+            Referer
+          </div>
+          <div class="panel-body text-center">
+            <div class="row">
+              <div class="form-group col-lg-12">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Referer</th>
+                      <th scope="col">Count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of usageCounts.countByReferer">
+                      <th scope="row">{{ item.referer }}</th>
+                      <td>{{ item.count }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

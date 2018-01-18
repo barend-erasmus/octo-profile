@@ -27,6 +27,8 @@ import { environment } from './../environments/environment';
 import { HeaderComponent } from './header/header.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { FooterComponent } from './footer/footer.component';
+import { DashboardRouteComponent } from './dashboard-route/dashboard-route.component';
+import { UsageService } from './usage.service';
 
 const appRoutes: Routes = [
   {
@@ -44,6 +46,13 @@ const appRoutes: Routes = [
   {
     path: 'admin/home',
     component: HomeRouteComponent,
+    canActivate: [
+      AuthGuard,
+    ],
+  },
+  {
+    path: 'admin/dashboard',
+    component: DashboardRouteComponent,
     canActivate: [
       AuthGuard,
     ],
@@ -73,6 +82,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     SideMenuComponent,
     FooterComponent,
+    DashboardRouteComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +102,7 @@ const appRoutes: Routes = [
         return new ServiceGatewayService(environment.production ? '' : 'http://localhost:3000', http);
       },
     },
+    UsageService,
     UserService,
   ],
   bootstrap: [AppComponent]
