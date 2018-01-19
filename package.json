@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "npm run build & ssh-deployer -f deploy.json --host octoprofile.com --username root --password MidericK96 --workspace ./"
+    "deploy": "npm run build & ssh-deployer -f deploy.json --host octoprofile.com --username username --password password --workspace ./"
   },
   "private": true,
   "dependencies": {
