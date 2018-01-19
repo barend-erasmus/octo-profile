@@ -37,9 +37,10 @@ export class ProfileService {
     });
   }
 
-  public find(id: string): Observable<Profile> {
+  public find(id: string, lastVisit: Date): Observable<Profile> {
     return this.serviceGateway.get<any>('/api/profile', {
       id,
+      lastVisit,
     }).map((profile: Profile) => {
 
       profile.education.forEach((education: Education) => {

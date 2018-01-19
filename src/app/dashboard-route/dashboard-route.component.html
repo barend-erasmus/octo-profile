@@ -12,8 +12,8 @@
     <div class="row">
       <div class="col-lg-12 text-center welcome-message">
         <h2> Dashboard </h2>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in lacus urna. Mauris tellus orci, commodo a ante
-          et, dapibus varius urna. </p>
+        <!-- <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in lacus urna. Mauris tellus orci, commodo a ante
+          et, dapibus varius urna. </p> -->
       </div>
     </div>
     <div *ngIf="usageCounts != null" class="row">
@@ -22,19 +22,24 @@
           <div class="panel-title text-center">
             Referer
           </div>
-          <div class="panel-body text-center">
+          <div class="panel-body">
             <div class="row">
               <div class="form-group col-lg-12">
                 <table class="table">
                   <thead>
                     <tr>
                       <th scope="col">Referer</th>
+                      <th scope="col">Type</th>
                       <th scope="col">Count</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <tr *ngIf="usageCounts.countByReferer.length == 0">
+                      <td scope="row">Nobody has viewed your profile in the last 7 days</td>
+                    </tr>
                     <tr *ngFor="let item of usageCounts.countByReferer">
-                      <th scope="row">{{ item.referer }}</th>
+                      <td scope="row">{{ item.referer }}</td>
+                      <td scope="row">{{ item.type }}</td>
                       <td>{{ item.count }}</td>
                     </tr>
                   </tbody>
@@ -45,6 +50,38 @@
         </div>
       </div>
     </div>
+    <div *ngIf="usageCounts != null" class="row">
+        <div class="col-lg-12">
+          <div class="hpanel">
+            <div class="panel-title text-center">
+              New vs Returning Visitors
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Count</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngIf="usageCounts.countByFirstTime.length == 0">
+                        <td scope="row">Nobody has viewed your profile in the last 7 days</td>
+                      </tr>
+                      <tr *ngFor="let item of usageCounts.countByFirstTime">
+                        <td scope="row">{{ item.firstTime? 'New' : 'Returning' }}</td>
+                        <td>{{ item.count }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
   <app-footer></app-footer>
 </div>

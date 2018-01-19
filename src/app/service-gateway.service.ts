@@ -16,13 +16,13 @@ export class ServiceGatewayService {
 
         const token = localStorage.getItem('token');
 
-        let headers = new HttpHeaders()
-    
+        let headers = new HttpHeaders();
+
         if (token) {
             headers = headers.set('authorization', `Bearer ${token}`);
         }
 
-        const queryString = params ? Object.keys(params).map((key) => `${key}=${params[key]}`).join('&') : '';
+        const queryString = params ? Object.keys(params).filter((key) => params[key]).map((key) => `${key}=${params[key]}`).join('&') : '';
         return this.http.get<T>(`${this.baseUri}${uri}?${queryString}`, {
             headers,
             observe: 'response',
@@ -33,9 +33,9 @@ export class ServiceGatewayService {
 
     public post<T>(uri: string, json: any): Observable<T> {
         const token = localStorage.getItem('token');
-        
-        let headers = new HttpHeaders()
-    
+
+        let headers = new HttpHeaders();
+
         if (token) {
             headers = headers.set('authorization', `Bearer ${token}`);
         }
@@ -51,8 +51,8 @@ export class ServiceGatewayService {
     public put<T>(uri: string, json: any): Observable<T> {
         const token = localStorage.getItem('token');
 
-        let headers = new HttpHeaders()
-    
+        let headers = new HttpHeaders();
+
         if (token) {
             headers = headers.set('authorization', `Bearer ${token}`);
         }
