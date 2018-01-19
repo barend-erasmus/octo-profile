@@ -3,7 +3,7 @@
 <div class="container">
    <div class="row">
       <div class="col-xs-12 col-sm-4 col-md-3 resume-profile">
-         <img width="250" src="{{ profile == null? 'http://via.placeholder.com/350x350' : (profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml) }}" class="img-thumbnail" alt="Your Name"> 
+         <img width="250" src="{{ profile == null? 'https://via.placeholder.com/350x350' : (profile.image == null? 'https://via.placeholder.com/350x350' : profile.image | safeHtml) }}" class="img-thumbnail" alt="Your Name"> 
          <h1> {{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }} <small class="text-muted"> {{ profile == null? '' : (profile.workExperiences.length > 0? profile.workExperiences[0].position : '') }} </small> </h1>
          <ul class="list-unstyled">
             <li>Email: <a href="mailto: {{ profile == null? '' : profile.emailAddress }}">{{ profile == null? '' : profile.emailAddress }}</a></li>

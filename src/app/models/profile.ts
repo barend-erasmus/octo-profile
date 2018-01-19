@@ -56,43 +56,43 @@ export class Profile {
             [
                 new PortfolioItem(
                     'BragStones is a mobile application where proud users can create scrapbook albums about their children and/or grandchildren.',
-                    'http://via.placeholder.com/300x300',
+                    'https://via.placeholder.com/300x300',
                     'https://play.google.com/store/apps/details?id=com.viaafrika.bragstones&hl=en',
                     'BragStones'
                 ),
                 new PortfolioItem(
                     'Via Afrika CareerCompass has been created to help you decide which career path might be the perfect fit for you.',
-                    'http://via.placeholder.com/300x300',
+                    'https://via.placeholder.com/300x300',
                     'https://play.google.com/store/apps/details?id=com.viaafrika.careercompass&hl=en',
                     'CareerCompass'
                 ),
                 new PortfolioItem(
                     'Mirrovest is a web-based trading platform that integrates into iress, a world-renowned trading platform used by thousands of live traders.',
-                    'http://via.placeholder.com/300x300',
+                    'https://via.placeholder.com/300x300',
                     null,
                     'Mirrovest'
                 ),
                 new PortfolioItem(
                     'ePONS is a patient monitoring support tool that tracks the improvements that a patient makes after a life-altering event, such as a stroke or amputation.',
-                    'http://via.placeholder.com/300x300',
+                    'https://via.placeholder.com/300x300',
                     'http://epons.sadfm.co.za',
                     'Electronic Patient Outcomes Nursing System'
                 ),
                 new PortfolioItem(
                     'Medical Department Universal Systems Automation',
-                    'http://via.placeholder.com/300x300',
+                    'https://via.placeholder.com/300x300',
                     'http://www.synapseon.com/',
                     'Medusa'
                 ),
                 new PortfolioItem(
                     'Passport is a global market research database providing insight on industries, economies and consumers worldwide, helping our clients analyse market context and identify future trends impacting businesses globally.',
-                    'http://via.placeholder.com/300x300',
+                    'https://via.placeholder.com/300x300',
                     'http://go.euromonitor.com/passport.html',
                     'Passport'
                 ),
                 new PortfolioItem(
                     'Research Monitor features simple search functionality and content in many languages, offering users, regardless of location and experience, easy answers to research questions.',
-                    'http://via.placeholder.com/300x300',
+                    'https://via.placeholder.com/300x300',
                     'http://go.euromonitor.com/research-monitor.html',
                     'Research Monitor'
                 ),

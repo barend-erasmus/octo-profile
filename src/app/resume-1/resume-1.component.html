@@ -1,4 +1,4 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/assets/resume-1/css/styles.css">
 
@@ -29,7 +29,7 @@
     </div>
     <div class="intro">
         <div class="container text-center">
-            <img class="profile-image" src="{{ profile == null? 'http://via.placeholder.com/350x350' : (profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml) }}"
+            <img class="profile-image" src="{{ profile == null? 'https://via.placeholder.com/350x350' : (profile.image == null? 'https://via.placeholder.com/350x350' : profile.image | safeHtml) }}"
                 alt="">
             <h1 class="name">{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</h1>
             <div class="title">{{ profile == null? '' : (profile.workExperiences.length > 0? profile.workExperiences[0].position : '') }}</div>
@@ -175,7 +175,7 @@
     <section id="contact-section" class="contact-section section">
         <h2 class="section-title">Get in Touch</h2>
         <div class="intro">
-            <img class="profile-image" src="http://via.placeholder.com/300x300" alt="">
+            <img class="profile-image" src="https://via.placeholder.com/300x300" alt="">
             <div class="dialog">
                 <p>
                     {{ profile.message }}

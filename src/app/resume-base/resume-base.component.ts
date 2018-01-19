@@ -18,11 +18,15 @@ export class ResumeBaseComponent implements OnInit {
   @Input()
   public profile: Profile = null;
 
+  public loaded = false;
+
   constructor(
 
   ) { }
 
   public ngOnInit(): void {
-
+    // setTimeout(() => {
+    //   this.loaded = true;
+    // }, 2000);
   }
 }

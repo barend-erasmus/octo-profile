@@ -99,7 +99,7 @@ const appRoutes: Routes = [
       deps: [ HttpClient ],
       provide: ServiceGatewayService,
       useFactory: (http: HttpClient) => {
-        return new ServiceGatewayService(environment.production ? '' : 'http://localhost:3000', http);
+        return new ServiceGatewayService(http);
       },
     },
     UsageService,

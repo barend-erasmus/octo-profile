@@ -2,7 +2,7 @@
     <div id="navigation">
         <div class="profile-picture">
             <a href="/admin/home">
-                <img src="{{ profile.image == null? 'http://via.placeholder.com/350x350' : profile.image | safeHtml }}" style="width: 50px"
+                <img src="{{ profile.image == null? 'https://via.placeholder.com/350x350' : profile.image | safeHtml }}" style="width: 50px"
                     class="img-circle m-b" alt="logo"> </a>
             <div class="stats-label text-color">
                 <span class="font-extra-bold font-uppercase">{{ profile.firstName }} {{ profile.lastName }}</span>

@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../environments/environment.prod';
 
 @Injectable()
 export class ServiceGatewayService {
+
+    private baseUri: string;
+
     constructor(
-        private baseUri: string,
         private http: HttpClient,
     ) {
-
+        this.baseUri = environment.production ? 'https://octoprofile.com' : 'http://localhost:3000';
     }
 
     public get<T>(uri: string, params: any): Observable<T> {
