@@ -6,6 +6,7 @@ import { WorkExperience } from '../models/work-experience';
 import { Education } from '../models/education';
 import { Skill } from '../models/skill';
 import { PortfolioItem } from '../models/portfolio-item';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-resume-base',
@@ -25,8 +26,8 @@ export class ResumeBaseComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    // setTimeout(() => {
-    //   this.loaded = true;
-    // }, 2000);
+    setTimeout(() => {
+      this.loaded = true;
+    }, environment.loadedTimeout);
   }
 }

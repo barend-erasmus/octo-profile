@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/assets/resume-5/css/styles.css">
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav *ngIf="loaded" class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -34,7 +34,7 @@
     </div>
   </div>
 </nav>
-<section class="global-info">
+<section *ngIf="loaded" class="global-info">
   <div class="container">
     <div class="row">
       <div class="col-md-5">
@@ -66,7 +66,7 @@
     </div>
   </div>
 </section>
-<div class="resume-container">
+<div *ngIf="loaded" class="resume-container">
   <section id="about-me" class="resume-section">
     <article class="container">
       <div class="row">
@@ -161,6 +161,6 @@
     </article>
   </section>
 </div>
-<footer class="text-center">
+<footer *ngIf="loaded" class="text-center">
   <p>© Octo Profile</p>
 </footer>

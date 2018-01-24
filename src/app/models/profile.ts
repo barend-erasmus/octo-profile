@@ -29,6 +29,31 @@ export class Profile {
 
     }
 
+    public static create(): Profile {
+        return new Profile(
+            null,
+            null,
+            null,
+            null,
+            [],
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            [],
+            [],
+            null,
+            null,
+            null,
+            null,
+            [],
+          );
+    }
+
 
     public static getProfileBarendErasmus(): Profile {
         return new Profile(

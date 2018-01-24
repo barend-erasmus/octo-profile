@@ -5,6 +5,7 @@ import { PortfolioItem } from '../models/portfolio-item';
 import { Skill } from '../models/skill';
 import { WorkExperience } from '../models/work-experience';
 import { Profile } from '../models/profile';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home-route',
@@ -12,6 +13,8 @@ import { Profile } from '../models/profile';
   styleUrls: ['./home-route.component.css']
 })
 export class HomeRouteComponent implements OnInit {
+
+  public loaded: boolean = false;
 
   public newEducation: Education = new Education(null, new Date(), null, null, new Date());
 
@@ -23,34 +26,18 @@ export class HomeRouteComponent implements OnInit {
 
   public newWorkExperience: WorkExperience = new WorkExperience(null, false, null, new Date(), null, null, new Date());
 
-  public profile: Profile = new Profile(
-    null,
-    null,
-    null,
-    null,
-    [],
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    [],
-    [],
-    null,
-    null,
-    null,
-    null,
-    [],
-  );
+  public profile: Profile = Profile.create();
 
   public tempPortfolioItem: PortfolioItem = null;
 
   constructor(private profileService: ProfileService,  private element: ElementRef) { }
 
   public ngOnInit(): void {
+
+    setTimeout(() => {
+      this.loaded = true;
+    }, environment.loadedTimeout);
+
     this.profileService.list().subscribe((profiles: Profile[]) => {
       if (profiles.length !== 0) {
         this.profile = profiles[0];

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/assets/resume-1/css/styles.css">
 
-<header class="header">
+<header *ngIf="loaded" class="header">
     <div class="top-bar container-fluid">
         <div class="actions">
             <a class="btn d-none d-md-inline-block" href="mailto: {{ profile == null? '' : profile.emailAddress }}">
@@ -80,7 +80,7 @@
         </div>
     </div>
 </header>
-<div class="wrapper container">
+<div *ngIf="loaded" class="wrapper container">
     <section id="experiences-section" class="experiences-section section">
         <h2 class="section-title">Work Experiences</h2>
         <div class="timeline">
@@ -205,7 +205,7 @@
         </div>
     </section>
 </div>
-<footer class="footer text-center">
+<footer *ngIf="loaded" class="footer text-center">
     <div class="container">
         <small class="copyright"> Copyright @
             <a href="https://developersworkspace.co.za" target="_blank">Octo Profile</a>

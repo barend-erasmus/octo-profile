@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/assets/resume-3/css/styles.css">
 
-<div class="container">
+<div *ngIf="loaded" class="container">
    <div class="row">
       <div class="col-xs-12 col-sm-4 col-md-3 resume-profile">
          <img width="250" src="{{ profile == null? 'https://via.placeholder.com/350x350' : (profile.image == null? 'https://via.placeholder.com/350x350' : profile.image | safeHtml) }}" class="img-thumbnail" alt="Your Name"> 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-register-route',
@@ -8,6 +9,7 @@ import { UserService } from '../user.service';
 })
 export class RegisterRouteComponent implements OnInit {
 
+  public loaded: boolean = false;
   public password: string = null;
   public username: string = null;
   public message: string = null;
@@ -19,7 +21,9 @@ export class RegisterRouteComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-
+    setTimeout(() => {
+      this.loaded = true;
+    }, environment.loadedTimeout);
   }
 
   public onClick_Register(): void {

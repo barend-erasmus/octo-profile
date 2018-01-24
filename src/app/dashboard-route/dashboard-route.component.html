@@ -4,10 +4,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/assets/admin/css/styles.css">
 
-<app-header></app-header>
-<app-side-menu [profile]="profile"></app-side-menu>
+<app-header *ngIf="loaded"></app-header>
+<app-side-menu *ngIf="loaded" [profile]="profile"></app-side-menu>
 
-<div id="wrapper">
+<div *ngIf="loaded" id="wrapper">
   <div class="content">
     <div class="row">
       <div class="col-lg-12 text-center welcome-message">

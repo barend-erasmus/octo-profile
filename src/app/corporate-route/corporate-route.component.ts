@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-corporate-route',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CorporateRouteComponent implements OnInit {
 
+  public loaded: boolean = false;
+
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+    setTimeout(() => {
+      this.loaded = true;
+    }, environment.loadedTimeout);
   }
 
 }

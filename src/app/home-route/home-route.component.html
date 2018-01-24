@@ -9,10 +9,10 @@
 <input id="onChange_PortfolioItemImage" (change)="onChange_PortfolioItemImage($event)" type="file" style="display: none;"
 />
 
-<app-header></app-header>
-<app-side-menu [profile]="profile"></app-side-menu>
+<app-header *ngIf="loaded"></app-header>
+<app-side-menu *ngIf="loaded" [profile]="profile"></app-side-menu>
 
-<div id="wrapper">
+<div *ngIf="loaded" id="wrapper">
     <div class="content">
         <div class="row">
             <div class="col-lg-12 text-center welcome-message">

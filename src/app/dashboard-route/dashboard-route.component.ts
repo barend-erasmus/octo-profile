@@ -3,6 +3,7 @@ import { UsageService } from '../usage.service';
 import { ProfileService } from '../profile.service';
 import { UsageCounts } from '../models/usage-counts';
 import { Profile } from '../models/profile';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-dashboard-route',
@@ -11,34 +12,19 @@ import { Profile } from '../models/profile';
 })
 export class DashboardRouteComponent implements OnInit {
 
-  public profile: Profile = new Profile(
-    null,
-    null,
-    null,
-    null,
-    [],
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    [],
-    [],
-    null,
-    null,
-    null,
-    null,
-    [],
-  );
+  public loaded: boolean = false;
+
+  public profile: Profile = Profile.create();
 
   public usageCounts: UsageCounts = null;
 
   constructor(private profileService: ProfileService, private usageService: UsageService) { }
 
   public ngOnInit(): void {
+
+    setTimeout(() => {
+      this.loaded = true;
+    }, environment.loadedTimeout);
 
     this.profileService.list().subscribe((profiles: Profile[]) => {
       if (profiles.length !== 0) {
