@@ -19,22 +19,7 @@ export class ProfileService {
   }
 
   public create(profile: Profile): Observable<Profile> {
-    return this.serviceGateway.post<Profile>('/api/profile', profile).map((profileMap: Profile) => {
-
-      profileMap.education.forEach((education: Education) => {
-        education.to = education.to ? new Date(education.to) : null;
-        education.from = education.from ? new Date(education.from) : null;
-      });
-
-      profileMap.workExperiences.forEach((workExperience: WorkExperience) => {
-        workExperience.to = workExperience.to ? new Date(workExperience.to) : null;
-        workExperience.from = workExperience.from ? new Date(workExperience.from) : null;
-      });
-
-      profileMap.birthDate = profileMap.birthDate ? new Date(profileMap.birthDate) : null;
-
-      return profileMap;
-    });
+    return this.serviceGateway.post<Profile>('/api/profile', profile).map(this.mapToProfile);
   }
 
   public find(id: string, lastVisit: Date): Observable<Profile> {
@@ -53,7 +38,7 @@ export class ProfileService {
         workExperience.from = workExperience.from ? new Date(workExperience.from) : null;
       });
 
-      profile.birthDate = profile.birthDate ? new Date(profile.birthDate) : null;
+      profile.personalInformation.birthDate = profile.personalInformation.birthDate ? new Date(profile.personalInformation.birthDate) : null;
 
       return profile;
     });
@@ -63,17 +48,7 @@ export class ProfileService {
     return this.serviceGateway.get<Profile[]>('/api/profile', null).map((profiles: Profile[]) => {
 
       profiles.forEach((profile: Profile) => {
-        profile.education.forEach((education: Education) => {
-          education.to = education.to ? new Date(education.to) : null;
-          education.from = education.from ? new Date(education.from) : null;
-        });
-
-        profile.workExperiences.forEach((workExperience: WorkExperience) => {
-          workExperience.to = workExperience.to ? new Date(workExperience.to) : null;
-          workExperience.from = workExperience.from ? new Date(workExperience.from) : null;
-        });
-
-        profile.birthDate = profile.birthDate ? new Date(profile.birthDate) : null;
+        this.mapToProfile(profile);
       });
 
       return profiles;
@@ -81,22 +56,23 @@ export class ProfileService {
   }
 
   public update(profile: Profile): Observable<Profile> {
-    return this.serviceGateway.put<any>('/api/profile', profile).map((profileMap: Profile) => {
+    return this.serviceGateway.put<any>('/api/profile', profile).map(this.mapToProfile);
+  }
 
-      profileMap.education.forEach((education: Education) => {
-        education.to = education.to ? new Date(education.to) : null;
-        education.from = education.from ? new Date(education.from) : null;
-      });
-
-      profileMap.workExperiences.forEach((workExperience: WorkExperience) => {
-        workExperience.to = workExperience.to ? new Date(workExperience.to) : null;
-        workExperience.from = workExperience.from ? new Date(workExperience.from) : null;
-      });
-
-      profileMap.birthDate = profileMap.birthDate ? new Date(profileMap.birthDate) : null;
-
-      return profileMap;
+  private mapToProfile(profile: any): Profile {
+    profile.education.forEach((education: Education) => {
+      education.to = education.to ? new Date(education.to) : null;
+      education.from = education.from ? new Date(education.from) : null;
     });
+
+    profile.workExperiences.forEach((workExperience: WorkExperience) => {
+      workExperience.to = workExperience.to ? new Date(workExperience.to) : null;
+      workExperience.from = workExperience.from ? new Date(workExperience.from) : null;
+    });
+
+    profile.personalInformation.birthDate = profile.personalInformation.birthDate ? new Date(profile.personalInformation.birthDate) : null;
+
+    return profile;
   }
 
 }

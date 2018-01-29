@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
 })
 export class HomeRouteComponent implements OnInit {
 
-  public loaded: boolean = false;
+  public loaded = false;
 
   public newEducation: Education = new Education(null, new Date(), null, null, new Date());
 
@@ -26,11 +26,11 @@ export class HomeRouteComponent implements OnInit {
 
   public newWorkExperience: WorkExperience = new WorkExperience(null, false, null, new Date(), null, null, new Date());
 
-  public profile: Profile = Profile.create();
+  public profile: Profile = Profile.empty();
 
   public tempPortfolioItem: PortfolioItem = null;
 
-  constructor(private profileService: ProfileService,  private element: ElementRef) { }
+  constructor(private profileService: ProfileService, private element: ElementRef) { }
 
   public ngOnInit(): void {
 
@@ -41,7 +41,7 @@ export class HomeRouteComponent implements OnInit {
     this.profileService.list().subscribe((profiles: Profile[]) => {
       if (profiles.length !== 0) {
         this.profile = profiles[0];
-      }else {
+      } else {
         this.profile = null;
       }
     }, (err) => {
@@ -147,30 +147,14 @@ export class HomeRouteComponent implements OnInit {
 
   public onClick_SaveNewId(): void {
 
-      this.profileService.create(new Profile(
-        null,
-        null,
-        null,
-        null,
-        [],
-        null,
-        null,
-        null,
-        this.newId,
-        null,
-        null,
-        null,
-        null,
-        [],
-        [],
-        null,
-        'resume-1',
-        null,
-        null,
-        [],
-      )).subscribe((result) => {
-        this.profile = result;
-      });
+    const profile: Profile = Profile.empty();
+
+    profile.id = this.newId;
+    profile.type = 'resume-1';
+
+    this.profileService.create(profile).subscribe((result) => {
+      this.profile = result;
+    });
   }
 
 }

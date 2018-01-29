@@ -12,17 +12,17 @@ export class UserService {
 
   }
 
-  public authenticate(username: string, password: string): Observable<any> {
+  public authenticate(userName: string, password: string): Observable<any> {
     return this.serviceGateway.get<any>('/api/user', {
       password,
-      username,
+      userName,
     });
   }
 
-  public create(username: string, password: string): Observable<boolean> {
+  public create(userName: string, password: string): Observable<boolean> {
     return this.serviceGateway.post<any>('/api/user', {
       password,
-      username,
+      userName,
     });
   }
 

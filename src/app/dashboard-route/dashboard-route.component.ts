@@ -12,9 +12,9 @@ import { environment } from '../../environments/environment';
 })
 export class DashboardRouteComponent implements OnInit {
 
-  public loaded: boolean = false;
+  public loaded = false;
 
-  public profile: Profile = Profile.create();
+  public profile: Profile = Profile.empty();
 
   public usageCounts: UsageCounts = null;
 

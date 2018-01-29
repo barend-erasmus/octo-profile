@@ -9,9 +9,9 @@ import { environment } from '../../environments/environment';
 })
 export class RegisterRouteComponent implements OnInit {
 
-  public loaded: boolean = false;
+  public loaded = false;
   public password: string = null;
-  public username: string = null;
+  public userName: string = null;
   public message: string = null;
 
   constructor(
@@ -27,8 +27,8 @@ export class RegisterRouteComponent implements OnInit {
   }
 
   public onClick_Register(): void {
-    this.userService.create(this.username, this.password).subscribe((resultCreate) => {
-      this.userService.authenticate(this.username, this.password).subscribe((resultAuthenticate) => {
+    this.userService.create(this.userName, this.password).subscribe((resultCreate) => {
+      this.userService.authenticate(this.userName, this.password).subscribe((resultAuthenticate) => {
         localStorage.setItem('token', resultAuthenticate.token);
         window.location.href = '/admin/home';
       });

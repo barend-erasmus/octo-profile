@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class CorporateRouteComponent implements OnInit {
 
-  public loaded: boolean = false;
+  public loaded = false;
 
   constructor() { }
 

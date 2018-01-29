@@ -1,5 +1,4 @@
 export class WorkExperience {
-
     constructor(
         public companyName: string,
         public currentlyEmployed: boolean,
@@ -9,5 +8,6 @@ export class WorkExperience {
         public position: string,
         public to: Date,
     ) {
+
     }
 }

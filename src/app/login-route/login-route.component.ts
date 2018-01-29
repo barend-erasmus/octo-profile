@@ -9,9 +9,9 @@ import { environment } from '../../environments/environment';
 })
 export class LoginRouteComponent implements OnInit {
 
-  public loaded: boolean = false;
+  public loaded = false;
   public password: string = null;
-  public username: string = null;
+  public userName: string = null;
   public message: string = null;
 
   constructor(
@@ -27,7 +27,7 @@ export class LoginRouteComponent implements OnInit {
   }
 
   public onClick_Login(): void {
-    this.userService.authenticate(this.username, this.password).subscribe((result) => {
+    this.userService.authenticate(this.userName, this.password).subscribe((result) => {
       localStorage.setItem('token', result.token);
       window.location.href = '/admin/home';
     }, (err) => {
