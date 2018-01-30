@@ -5,7 +5,7 @@
                 <img src="{{ profile.image == null? 'https://via.placeholder.com/350x350' : profile.image | safeHtml }}" style="width: 50px"
                     class="img-circle m-b" alt="logo"> </a>
             <div class="stats-label text-color">
-                <span class="font-extra-bold font-uppercase">{{ profile.firstName }} {{ profile.lastName }}</span>
+                <span class="font-extra-bold font-uppercase">{{ profile.personalInformation.firstName }} {{ profile.personalInformation.lastName }}</span>
             </div>
         </div>
         <ul class="nav" id="side-menu">
