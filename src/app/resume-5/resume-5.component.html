@@ -1,8 +1,6 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/assets/resume-5/css/styles.css">
 
-<nav *ngIf="loaded" class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -15,18 +13,18 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="nav navbar-nav navbar-right quick-links">
-        <li *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)">
-          <a href="{{ profile.linkedInLink }}" target="_blank">
+        <li *ngIf="profile == null? false : (profile.socialInformation.linkedInLink == null? false : profile.socialInformation.linkedInLink)">
+          <a href="{{ profile.socialInformation.linkedInLink }}" target="_blank">
             <i class="fa fa-linkedin"></i>
           </a>
         </li>
-        <li *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)">
-          <a href="{{ profile.twitterLink }}" target="_blank">
+        <li *ngIf="profile == null? false : (profile.socialInformation.twitterLink == null? false : profile.socialInformation.twitterLink)">
+          <a href="{{ profile.socialInformation.twitterLink }}" target="_blank">
             <i class="fa fa-twitter"></i>
           </a>
         </li>
-        <li *ngIf="profile == null? false : (profile.googlePlusLink == null? false : profile.googlePlusLink)">
-          <a href="{{ profile.googlePlusLink }}" target="_blank">
+        <li *ngIf="profile == null? false : (profile.socialInformation.googlePlusLink == null? false : profile.socialInformation.googlePlusLink)">
+          <a href="{{ profile.socialInformation.googlePlusLink }}" target="_blank">
             <i class="fa fa-google-plus"></i>
           </a>
         </li>
@@ -34,7 +32,7 @@
     </div>
   </div>
 </nav>
-<section *ngIf="loaded" class="global-info">
+<section class="global-info">
   <div class="container">
     <div class="row">
       <div class="col-md-5">
@@ -45,20 +43,28 @@
         <div class="name-jobtitle">
           <h2 class="title">
             <small>{{ profile == null? '' : (profile.workExperiences.length > 0? profile.workExperiences[0].position : '') }}</small>{{
-            profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</h2>
+            profile == null? '' : profile.personalInformation.firstName }} {{ profile == null? '' : profile.personalInformation.lastName
+            }}</h2>
         </div>
       </div>
       <div class="col-md-7 hidden-sm hidden-xs">
         <div class="address-contact">
           <div class="address">
             <span>Address</span>
-            <p [innerHTML]="profile.address | lineBreak: 4"></p>
+            <p>
+              {{ profile.contactInformation.address.city }}
+              <br />
+              {{ profile.contactInformation.address.country }}
+              <br />
+              {{ profile.contactInformation.address.postalCode }}
+              <br />
+            </p>
           </div>
           <div class="contact">
             <span>Contact</span>
             <p>
-              {{ profile.emailAddress }}
-              <br/> {{ profile.contactNumber }}
+              {{ profile.contactInformation.emailAddress }}
+              <br/> {{ profile.contactInformation.contactNumber }}
             </p>
           </div>
         </div>
@@ -66,7 +72,7 @@
     </div>
   </div>
 </section>
-<div *ngIf="loaded" class="resume-container">
+<div class="resume-container">
   <section id="about-me" class="resume-section">
     <article class="container">
       <div class="row">
@@ -78,10 +84,10 @@
           </div>
         </div>
         <div class="card-container">
-          <span class="col-md-3 col-md-offset-1 side-note">{{ profile.birthDate | date: 'MMM. dd, yyyy' }}</span>
+          <span class="col-md-3 col-md-offset-1 side-note">{{ profile.personalInformation.birthDate | date: 'MMM. dd, yyyy' }}</span>
           <div class="col-md-6 resume-card">
-            <h3 class="title">I’m {{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}, nice to meet
-              you.
+            <h3 class="title">I’m {{ profile == null? '' : profile.personalInformation.firstName }} {{ profile == null? '' : profile.personalInformation.lastName
+              }}, nice to meet you.
             </h3>
             <p>{{ profile.about }}</p>
           </div>
@@ -161,6 +167,6 @@
     </article>
   </section>
 </div>
-<footer *ngIf="loaded" class="text-center">
+<footer class="text-center">
   <p>© Octo Profile</p>
 </footer>

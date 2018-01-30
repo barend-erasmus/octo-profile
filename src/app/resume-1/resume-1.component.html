@@ -1,27 +1,25 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/assets/resume-1/css/styles.css">
 
-<header *ngIf="loaded" class="header">
+<header class="header">
     <div class="top-bar container-fluid">
         <div class="actions">
-            <a class="btn d-none d-md-inline-block" href="mailto: {{ profile == null? '' : profile.emailAddress }}">
+            <a class="btn d-none d-md-inline-block" href="mailto: {{ profile == null? '' : profile.contactInformation.emailAddress }}">
                 <i class="fa fa-paper-plane" aria-hidden="true"></i> Hire Me
             </a>
         </div>
         <ul class="social list-inline">
-            <li *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)" class="list-inline-item">
-                <a href="{{ profile.linkedInLink }}">
+            <li *ngIf="profile == null? false : (profile.socialInformation.linkedInLink == null? false : profile.socialInformation.linkedInLink)" class="list-inline-item">
+                <a href="{{ profile.socialInformation.linkedInLink }}">
                     <i class="fa fa-linkedin" aria-hidden="true"></i>
                 </a>
             </li>
-            <li *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)" class="list-inline-item">
-                <a href="{{ profile.twitterLink }}">
+            <li *ngIf="profile == null? false : (profile.socialInformation.twitterLink == null? false : profile.socialInformation.twitterLink)" class="list-inline-item">
+                <a href="{{ profile.socialInformation.twitterLink }}">
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
-            <li *ngIf="profile == null? false : (profile.googlePlusLink == null? false : profile.googlePlusLink)" class="list-inline-item">
-                <a href="{{ profile.googlePlusLink }}">
+            <li *ngIf="profile == null? false : (profile.socialInformation.googlePlusLink == null? false : profile.socialInformation.googlePlusLink)" class="list-inline-item">
+                <a href="{{ profile.socialInformation.googlePlusLink }}">
                     <i class="fa fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -31,7 +29,7 @@
         <div class="container text-center">
             <img class="profile-image" src="{{ profile == null? 'https://via.placeholder.com/350x350' : (profile.image == null? 'https://via.placeholder.com/350x350' : profile.image | safeHtml) }}"
                 alt="">
-            <h1 class="name">{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</h1>
+            <h1 class="name">{{ profile == null? '' : profile.personalInformation.firstName }} {{ profile == null? '' : profile.personalInformation.lastName }}</h1>
             <div class="title">{{ profile == null? '' : (profile.workExperiences.length > 0? profile.workExperiences[0].position : '') }}</div>
             <div class="profile">
                 <p>{{ profile.about }}</p>
@@ -43,15 +41,15 @@
             <ul class="list-inline">
                 <li class="email list-inline-item">
                     <i class="fa fa-envelope"></i>
-                    <a href="mailto: {{ profile == null? '' : profile.emailAddress }}">{{ profile == null? '' : profile.emailAddress }}</a>
+                    <a href="mailto: {{ profile == null? '' : profile.contactInformation.emailAddress }}">{{ profile == null? '' : profile.contactInformation.emailAddress }}</a>
                 </li>
                 <li class="list-inline-item">
                     <i class="fa fa-phone"></i>
-                    <a href="tel: {{ profile.contactNumber }}">{{ profile == null? '' : profile.contactNumber }}</a>
+                    <a href="tel: {{ profile.contactInformation.contactNumber }}">{{ profile == null? '' : profile.contactInformation.contactNumber }}</a>
                 </li>
                 <li class="website list-inline-item">
                     <i class="fa fa-globe"></i>
-                    <a href="{{ profile == null? '' : profile.website }}" target="_blank">{{ profile == null? '' : profile.website }}</a>
+                    <a href="{{ profile == null? '' : profile.socialInformation.website }}" target="_blank">{{ profile == null? '' : profile.socialInformation.website }}</a>
                 </li>
             </ul>
         </div>
@@ -80,7 +78,7 @@
         </div>
     </div>
 </header>
-<div *ngIf="loaded" class="wrapper container">
+<div class="wrapper container">
     <section id="experiences-section" class="experiences-section section">
         <h2 class="section-title">Work Experiences</h2>
         <div class="timeline">
@@ -120,23 +118,10 @@
         </div>
     </section>
     <section id="skills-section" class="skills-section section text-center">
-        <h2 class="section-title">Professional Skills</h2>
-        <div class="top-skills">
-            <h3 class="subtitle">Top Skills</h3>
-            <div class="row">
-                <div *ngFor="let skill of profile.skills" class="item col-12 col-md-4">
-                    <div class="item-inner">
-                        <h4 class="skill-name">{{ skill.name }}</h4>
-                        <div class="level">{{ skill.level }}, {{ skill.years }} years</div>
-                        <div class="desc"> {{ skill.description }} </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="other-skills">
-            <h3 class="subtitle">Other Skills</h3>
+        <div class="other-skills">
+            <h3 class="subtitle">Skills</h3>
             <div class="misc-skills">
-                <span class="skill-tag">HTML5</span>
+                <span *ngFor="let skill of profile.skills" class="skill-tag">{{ skill.name }}</span>
                 <span class="skill-tag">CSS3</span>
                 <span class="skill-tag">SASS</span>
                 <span class="skill-tag">LESS</span>
@@ -148,7 +133,7 @@
                 <span class="skill-tag">Spanish</span>
                 <span class="skill-tag">French</span>
             </div>
-        </div> -->
+        </div>
     </section>
     <section id="portfolio-section" class="portfolio-section section">
         <h2 class="section-title">Portfolio</h2>
@@ -181,22 +166,22 @@
                     {{ profile.message }}
                 </p>
                 <p>Drop me a line at
-                    <a href="mailto: {{ profile == null? '' : profile.emailAddress }}">{{ profile == null? '' : profile.emailAddress }}</a> or call me at
-                    <a href="tel: {{ profile == null? '' : profile.contactNumber }}">{{ profile == null? '' : profile.contactNumber }}</a>
+                    <a href="mailto: {{ profile == null? '' : profile.contactInformation.emailAddress }}">{{ profile == null? '' : profile.contactInformation.emailAddress }}</a> or call me at
+                    <a href="tel: {{ profile == null? '' : profile.contactInformation.contactNumber }}">{{ profile == null? '' : profile.contactInformation.contactNumber }}</a>
                 </p>
                 <ul class="social list-inline">
-                    <li *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)" class="list-inline-item">
-                        <a href="{{ profile.linkedInLink }}">
+                    <li *ngIf="profile == null? false : (profile.socialInformation.linkedInLink == null? false : profile.socialInformation.linkedInLink)" class="list-inline-item">
+                        <a href="{{ profile.socialInformation.linkedInLink }}">
                             <i class="fa fa-linkedin" aria-hidden="true"></i>
                         </a>
                     </li>
-                    <li *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)" class="list-inline-item">
-                        <a href="{{ profile.twitterLink }}">
+                    <li *ngIf="profile == null? false : (profile.socialInformation.twitterLink == null? false : profile.socialInformation.twitterLink)" class="list-inline-item">
+                        <a href="{{ profile.socialInformation.twitterLink }}">
                             <i class="fa fa-twitter" aria-hidden="true"></i>
                         </a>
                     </li>
-                    <li *ngIf="profile == null? false : (profile.googlePlusLink == null? false : profile.googlePlusLink)" class="list-inline-item">
-                        <a href="{{ profile.googlePlusLink }}">
+                    <li *ngIf="profile == null? false : (profile.socialInformation.googlePlusLink == null? false : profile.socialInformation.googlePlusLink)" class="list-inline-item">
+                        <a href="{{ profile.socialInformation.googlePlusLink }}">
                             <i class="fa fa-google-plus" aria-hidden="true"></i>
                         </a>
                     </li>
@@ -205,7 +190,7 @@
         </div>
     </section>
 </div>
-<footer *ngIf="loaded" class="footer text-center">
+<footer class="footer text-center">
     <div class="container">
         <small class="copyright"> Copyright @
             <a href="https://developersworkspace.co.za" target="_blank">Octo Profile</a>

@@ -26,22 +26,7 @@ export class ProfileService {
     return this.serviceGateway.get<any>('/api/profile', {
       id,
       lastVisit,
-    }).map((profile: Profile) => {
-
-      profile.education.forEach((education: Education) => {
-        education.to = education.to ? new Date(education.to) : null;
-        education.from = education.from ? new Date(education.from) : null;
-      });
-
-      profile.workExperiences.forEach((workExperience: WorkExperience) => {
-        workExperience.to = workExperience.to ? new Date(workExperience.to) : null;
-        workExperience.from = workExperience.from ? new Date(workExperience.from) : null;
-      });
-
-      profile.personalInformation.birthDate = profile.personalInformation.birthDate ? new Date(profile.personalInformation.birthDate) : null;
-
-      return profile;
-    });
+    }).map(this.mapToProfile);
   }
 
   public list(): Observable<Profile[]> {

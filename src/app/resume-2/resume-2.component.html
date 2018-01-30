@@ -1,14 +1,12 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/assets/resume-2/css/styles.css">
 
-<div *ngIf="loaded" class="container">
+<div class="container">
   <div class="row">
      <div class="col-xs-12">
         <div id="photo-header" class="text-center">
            <div id="photo"> <img src="{{ profile == null? 'https://via.placeholder.com/350x350' : (profile.image == null? 'https://via.placeholder.com/350x350' : profile.image | safeHtml) }}" alt="avatar"> </div>
            <div id="text-header">
-              <h1>Hello,<br>my name is <span>{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</span> and this is my resume/cv</h1>
+              <h1>Hello,<br>my name is <span>{{ profile == null? '' : profile.personalInformation.firstName }} {{ profile == null? '' : profile.personalInformation.lastName }}</span> and this is my resume/cv</h1>
            </div>
         </div>
      </div>
@@ -51,31 +49,31 @@
            <h2>Contact</h2>
            <div class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
-              <div class="title only pull-right">{{ profile == null? '' : profile.contactNumber }}</div>
+              <div class="title only pull-right">{{ profile == null? '' : profile.contactInformation.contactNumber }}</div>
            </div>
            <div class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
-              <div class="title only pull-right">{{ profile == null? '' : profile.emailAddress }}</div>
+              <div class="title only pull-right">{{ profile == null? '' : profile.contactInformation.emailAddress }}</div>
            </div>
-           <div *ngIf="profile == null? false : (profile.linkedInLink == null? false : profile.linkedInLink)" class="contact-item">
+           <div *ngIf="profile == null? false : (profile.socialInformation.linkedInLink == null? false : profile.socialInformation.linkedInLink)" class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-linkedin fa-fw"></span></div>
               <div class="title pull-right">LinkedIn</div>
-              <div class="description pull-right">{{ profile.linkedInLink }}</div>
+              <div class="description pull-right">{{ profile.socialInformation.linkedInLink }}</div>
            </div>
-           <div *ngIf="profile == null? false : (profile.twitterLink == null? false : profile.twitterLink)" class="contact-item">
+           <div *ngIf="profile == null? false : (profile.socialInformation.twitterLink == null? false : profile.socialInformation.twitterLink)" class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-twitter fa-fw"></span></div>
               <div class="title pull-right">Twitter</div>
-              <div class="description pull-right">{{ profile.twitterLink }}</div>
+              <div class="description pull-right">{{ profile.socialInformation.twitterLink }}</div>
            </div>
-           <div *ngIf="profile == null? false : (profile.googlePlusLink == null? false : profile.googlePlusLink)" class="contact-item">
+           <div *ngIf="profile == null? false : (profile.socialInformation.googlePlusLink == null? false : profile.socialInformation.googlePlusLink)" class="contact-item">
             <div class="icon pull-left text-center"><span class="fa fa-google-plus fa-fw"></span></div>
             <div class="title pull-right">Google +</div>
-            <div class="description pull-right">{{ profile.googlePlusLink }}</div>
+            <div class="description pull-right">{{ profile.socialInformation.googlePlusLink }}</div>
          </div>
            <div class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-globe fa-fw"></span></div>
               <div class="title pull-right">Website</div>
-              <div class="description pull-right">{{ profile == null? '' : profile.website }}</div>
+              <div class="description pull-right">{{ profile == null? '' : profile.socialInformation.website }}</div>
            </div>
         </div>
         <div class="box">

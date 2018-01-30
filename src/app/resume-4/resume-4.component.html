@@ -1,8 +1,6 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/assets/resume-4/css/styles.css">
 
-<div *ngIf="loaded" id="wrapper">
+<div id="wrapper">
   <div id="sidebar-wrapper" style="background-image: url('/assets/resume-4/images/sidebar-nav-bg.jpg')">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
@@ -37,7 +35,7 @@
         <div class="header-content">
           <h2>Hello
             <span class="text-primary">.</span> I am
-            <span class="text-primary">{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</span>
+            <span class="text-primary">{{ profile == null? '' : profile.personalInformation.firstName }} {{ profile == null? '' : profile.personalInformation.lastName }}</span>
           </h2>
           <h5>{{ profile == null? '' : (profile.workExperiences.length > 0? profile.workExperiences[0].position : '') }}</h5>
           <p>{{ profile.about }}</p>
@@ -58,7 +56,7 @@
                 </div>
                 <h5>Full Name</h5>
               </div>
-              <p>{{ profile == null? '' : profile.firstName }} {{ profile == null? '' : profile.lastName }}</p>
+              <p>{{ profile == null? '' : profile.personalInformation.firstName }} {{ profile == null? '' : profile.personalInformation.lastName }}</p>
             </div>
             <div class="col-md-4 feature-left space-bottom">
               <div class="feature block">
@@ -67,7 +65,7 @@
                 </div>
                 <h5>Bithdate</h5>
               </div>
-              <p>{{ profile.birthDate | date: 'MMM. dd, yyyy' }}</p>
+              <p>{{ profile.personalInformation.birthDate | date: 'MMM. dd, yyyy' }}</p>
             </div>
             <div class="col-md-4 feature-left space-bottom">
               <div class="feature block">
@@ -76,7 +74,11 @@
                 </div>
                 <h5>Address</h5>
               </div>
-              <p>{{ profile.address }}</p>
+              <p>{{ profile.contactInformation.address.line1 }}</p>
+              <p>{{ profile.contactInformation.address.line2 }}</p>
+              <p>{{ profile.contactInformation.address.city }}</p>
+              <p>{{ profile.contactInformation.address.country }}</p>
+              <p>{{ profile.contactInformation.address.postalCode }}</p>
             </div>
             <div class="col-md-4 feature-left space-bottom">
               <div class="feature block">
@@ -85,7 +87,7 @@
                 </div>
                 <h5>Email Address</h5>
               </div>
-              <p>{{ profile.emailAddress }}</p>
+              <p>{{ profile.contactInformation.emailAddress }}</p>
             </div>
             <div class="col-md-4 feature-left space-bottom">
               <div class="feature block">
@@ -94,7 +96,7 @@
                 </div>
                 <h5>Contact Number</h5>
               </div>
-              <p>{{ profile.contactNumber }}</p>
+              <p>{{ profile.contactInformation.contactNumber }}</p>
             </div>
             <div class="col-md-4 feature-left space-bottom">
               <div class="feature block">
@@ -103,7 +105,7 @@
                 </div>
                 <h5>LinkedIn Profile</h5>
               </div>
-              <p><a href="{{ profile.linkedInLink }}">{{ profile.linkedInLink }}</a></p>
+              <p><a href="{{ profile.socialInformation.linkedInLink }}">{{ profile.socialInformation.linkedInLink }}</a></p>
             </div>
           </div>
           <div id="skills">
