@@ -95,44 +95,44 @@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label>First Name</label>
-                                <input [(ngModel)]="profile.firstName" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter first name here"
+                                <input [(ngModel)]="profile.personalInformation.firstName" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter first name here"
                                 />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Last Name</label>
-                                <input [(ngModel)]="profile.lastName" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter last name here"
+                                <input [(ngModel)]="profile.personalInformation.lastName" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter last name here"
                                 />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Google+ Link</label>
-                                <input [(ngModel)]="profile.googlePlusLink" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter Google+ link here"
+                                <input [(ngModel)]="profile.socialInformation.googlePlusLink" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter Google+ link here"
                                 />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>LinkedIn Link</label>
-                                <input [(ngModel)]="profile.linkedInLink" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter LinkedIn link here"
+                                <input [(ngModel)]="profile.socialInformation.linkedInLink" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter LinkedIn link here"
                                 />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Twitter Link</label>
-                                <input [(ngModel)]="profile.twitterLink" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter Twitter link here"
+                                <input [(ngModel)]="profile.socialInformation.twitterLink" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter Twitter link here"
                                 />
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <label>Email Address</label>
-                                <input [(ngModel)]="profile.emailAddress" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter email address here"
+                                <input [(ngModel)]="profile.contactInformation.emailAddress" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter email address here"
                                 />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Contact Number</label>
-                                <input [(ngModel)]="profile.contactNumber" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter contact number here"
+                                <input [(ngModel)]="profile.contactInformation.contactNumber" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter contact number here"
                                 />
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Website</label>
-                                <input [(ngModel)]="profile.website" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter website here"
+                                <input [(ngModel)]="profile.socialInformation.website" (blur)="onClick_Save()" type="text" class="form-control" placeholder="Enter website here"
                                 />
                             </div>
                         </div>

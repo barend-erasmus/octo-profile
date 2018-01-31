@@ -9,7 +9,7 @@ import { Profile } from '../models/profile';
 export class SideMenuComponent implements OnInit {
 
   @Input()
-  public profile: Profile = null;
+  public profile: Profile = Profile.empty();
 
   constructor() { }
 
